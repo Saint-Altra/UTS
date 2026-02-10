@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Scroll Game</title>
+    <title>Utin</title>
     <style>
         body {
             margin: 0;
@@ -50,6 +50,39 @@
             font-weight: bold;
             z-index: 20;
         }
+        .npc {
+            position: absolute;
+            background-color: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 15;
+        }
+        .npc-name {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 16;
+        }
+        .menu {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 30;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +90,27 @@
         <div id="world">
             <div id="ground"></div>
             <div id="player"></div>
+
+            <div class="npc" id="npc1"></div>
+            <div class="npc" id="npc2"></div>
+            <div class="npc" id="npc3"></div>
+            <div class="npc" id="npc4"></div>
+            <div class="npc" id="npc5"></div>
+            <div class="npc" id="npc6"></div>
+
+            <div class="npc-name" id="name1">Antoine</div>
+            <div class="npc-name" id="name2">Daniel</div>
+            <div class="npc-name" id="name3">Justine</div>
+            <div class="npc-name" id="name4">Kris Karl</div>
+            <div class="npc-name" id="name5">Kurt</div>
+            <div class="npc-name" id="name6">Will</div>
+
+            <div class="menu" id="menu1">Portfolio 1</div>
+            <div class="menu" id="menu2">Portfolio 2</div>
+            <div class="menu" id="menu3">Portfolio 3</div>
+            <div class="menu" id="menu4">Portfolio 4</div>
+            <div class="menu" id="menu5">Portfolio 5</div>
+            <div class="menu" id="menu6">Portfolio 6</div>
         </div>
     </div>
 
@@ -68,6 +122,18 @@
         const PLAYER_WIDTH = 60;       
         const PLAYER_HEIGHT = 80;     
         const PLAYER_SPEED = 9;     
+        const NPC_WIDTH = PLAYER_WIDTH;
+        const NPC_HEIGHT = PLAYER_HEIGHT;
+
+        const npcPositions = [
+            {x: 400, y: 50},
+            {x: 650, y: 50},
+            {x: 900, y: 50},
+            {x: 1150, y: 50},
+            {x: 1400, y: 50},
+            {x: 1650, y: 50}
+        ];
+        const npcNames = ["name1","name2","name3","name4","name5","name6"];
 
         const worldEl = document.getElementById('world');
         const groundEl = document.getElementById('ground');
@@ -78,6 +144,37 @@
         groundEl.style.height = GROUND_HEIGHT + 'px';
         playerEl.style.width = PLAYER_WIDTH + 'px';
         playerEl.style.height = PLAYER_HEIGHT + 'px';
+
+        const npcs = [];
+        const names = [];
+        for (let i = 1; i <= 6; i++) {
+            const npc = document.getElementById('npc' + i);
+            npc.style.width = NPC_WIDTH + 'px';
+            npc.style.height = NPC_HEIGHT + 'px';
+            npc.style.left = npcPositions[i-1].x + 'px';
+            npc.style.bottom = npcPositions[i-1].y + 'px';
+            npcs.push(npc);
+
+            const nameEl = document.getElementById(npcNames[i-1]);
+            nameEl.style.left = npcPositions[i-1].x + 'px';
+            nameEl.style.bottom = (npcPositions[i-1].y + NPC_HEIGHT + 5) + 'px';
+            names.push(nameEl);
+        }
+
+        const menus = [];
+        for (let i = 1; i <= 6; i++) {
+            const menu = document.getElementById('menu' + i);
+            menus.push(menu);
+
+            npcs[i-1].addEventListener('click', () => {
+                menus.forEach(m => m.style.display = 'none');
+
+                menu.style.left = (npcPositions[i-1].x + NPC_WIDTH + 10) + 'px';
+                menu.style.bottom = npcPositions[i-1].y + 'px';
+
+                menu.style.display = 'flex';
+            });
+        }
 
         let playerX = 200;
         let playerY = 50;
@@ -96,7 +193,6 @@
             if (keys['ArrowDown'] || keys['s']) playerY -= PLAYER_SPEED;
 
             playerX = Math.max(cameraX, Math.min(playerX, cameraX + screenWidth - PLAYER_WIDTH));
-
             playerY = Math.max(0, Math.min(playerY, GROUND_HEIGHT - 5));
 
             playerEl.style.left = playerX + 'px';
