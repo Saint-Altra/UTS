@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Scroll Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            font-family: monospace;
+            border: 10px solid black;
+            box-sizing: border-box;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #111;
+        }
+        #world {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+        }
+        #ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #065f46;
+            border-top: 4px solid #059669;
+            z-index: 10;
+        }
+        #player {
+            position: absolute;
+            background-color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="world">
+            <div id="ground"></div>
+            <div id="player">YOU</div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- CONFIGURABLE VARIABLES ----------
+        const WORLD_WIDTH = 1500;      // Width of the entire world
+        const GROUND_HEIGHT = 300;     // Height of the ground
+        const GROUND_WIDTH = WORLD_WIDTH; // Width of the ground rectangle
+        const PLAYER_WIDTH = 60;       // Player width
+        const PLAYER_HEIGHT = 80;      // Player height
+        const PLAYER_SPEED = 9;        // Player movement speed
+        // -------------------------------------------
+
+        const worldEl = document.getElementById('world');
+        const groundEl = document.getElementById('ground');
+        const playerEl = document.getElementById('player');
+
+        // Apply sizes from variables
+        worldEl.style.width = WORLD_WIDTH + 'px';
+        groundEl.style.width = GROUND_WIDTH + 'px';
+        groundEl.style.height = GROUND_HEIGHT + 'px';
+        playerEl.style.width = PLAYER_WIDTH + 'px';
+        playerEl.style.height = PLAYER_HEIGHT + 'px';
+
+        let playerX = 200;
+        let playerY = 50;
+        let cameraX = 0;
+        const keys = {};
+
+        window.addEventListener('keydown', (e) => keys[e.key] = true);
+        window.addEventListener('keyup', (e) => keys[e.key] = false);
+
+        function gameLoop() {
+            const screenWidth = window.innerWidth;
+
+            if (keys['ArrowLeft'] || keys['a']) playerX -= PLAYER_SPEED;
+            if (keys['ArrowRight'] || keys['d']) playerX += PLAYER_SPEED;
+            if (keys['ArrowUp'] || keys['w']) playerY += PLAYER_SPEED;
+            if (keys['ArrowDown'] || keys['s']) playerY -= PLAYER_SPEED;
+
+            // X Boundaries: Left and right edge of screen
+            playerX = Math.max(cameraX, Math.min(playerX, cameraX + screenWidth - PLAYER_WIDTH));
+
+            // Y Boundaries
+            playerY = Math.max(0, Math.min(playerY, GROUND_HEIGHT - 5));
+
+            playerEl.style.left = playerX + 'px';
+            playerEl.style.bottom = playerY + 'px';
+
+            // Camera: Center player horizontally
+            const targetCameraX = playerX + PLAYER_WIDTH / 2 - screenWidth / 2;
+            cameraX = Math.max(0, Math.min(targetCameraX, WORLD_WIDTH - screenWidth));
+
+            worldEl.style.transform = `translateX(-${cameraX}px)`;
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
