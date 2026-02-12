@@ -1,0 +1,44 @@
+<div id="design-slot"></div>
+
+<div class="menu-layout">
+
+    <!-- LEFT SIDE -->
+    <div class="left-panel">
+        <div class="profile-image"></div>
+        <div class="profile-description">
+            <h3>Antoine</h3>
+            <p>Essay section.</p>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-panel">
+        <h2>Essay 1</h2>
+
+        <p>
+            Your essay content goes here.
+        </p>
+
+        <button class="work-btn" onclick="goBack()">
+            Back
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+fetch("../menuDesigns/antoinedes.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("design-slot").innerHTML = data;
+});
+
+function goBack() {
+    fetch("antoine.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("portfolio-target").innerHTML = data;
+    });
+}
+</script>
