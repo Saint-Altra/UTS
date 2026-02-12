@@ -1,0 +1,63 @@
+<div id="portfolio-modal" class="menu-content">
+    <div class="portfolio-header">
+        <h2 id="portfolio-name">Project Name</h2>
+        <span class="tag">Web Development</span>
+    </div>
+    <div class="portfolio-body">
+        <p id="portfolio-description">This is a featured project in my portfolio. I focused on clean design and efficient code to deliver a great user experience.</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">Role</span>
+                <span class="stat-value">Lead Designer</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Tech Stack</span>
+                <span class="stat-value">React, Tailwind</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .portfolio-header {
+        border-left: 4px solid #fbbf24;
+        padding-left: 15px;
+        margin-bottom: 20px;
+    }
+    .portfolio-header h2 {
+        margin: 0;
+        font-size: 28px;
+        color: #fbbf24;
+    }
+    .tag {
+        font-size: 10px;
+        background: rgba(251, 191, 36, 0.1);
+        color: #fbbf24;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+    }
+    .portfolio-body p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.7);
+    }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-label {
+        display: block;
+        font-size: 10px;
+        color: rgba(255,255,255,0.4);
+        text-transform: uppercase;
+    }
+    .stat-value {
+        font-size: 14px;
+        color: #fff;
+    }
+</style>
