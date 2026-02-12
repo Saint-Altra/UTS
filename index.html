@@ -175,7 +175,6 @@ nav ul li a:hover {color:#e67e22;}
 }
 
 .card.kris { background:#1a1f36; }
-.card.kris::before { content:""; }
 .card.tan { background:#1e1a36; }
 .card.fuertes { background:#36211e; }
 .card.kurt { background:#2c2c2f; }
@@ -258,7 +257,7 @@ nav ul li a:hover {color:#e67e22;}
   <div class="card-center">
     <h3>Kris Karl</h3>
     <p>Space Theme</p>
-    <button onclick="openModal('Kris Karl')">View Work</button>
+    <button onclick="openModal('kris')">View Work</button>
   </div>
   <div class="card-right" style="background-image:url('space-art.jpg');"></div>
 </div>
@@ -268,37 +267,37 @@ nav ul li a:hover {color:#e67e22;}
   <div class="card-center">
     <h3>Tan</h3>
     <p>Acid Chrome Theme</p>
-    <button onclick="openModal('Tan')">View Work</button>
+    <button onclick="openModal('tan')">View Work</button>
   </div>
   <div class="card-right" style="background-image:url('acid-chrome.jpg');"></div>
 </div>
 
 <div class="card fuertes">
-  <div class="card-left"><img src="image/justine.png" alt="Fuertes"></div>
+  <div class="card-left"><img src="image/Justine.png" alt="Fuertes"></div>
   <div class="card-center">
     <h3>Fuertes</h3>
     <p>Fantasy Theme</p>
-    <button onclick="openModal('Fuertes')">View Work</button>
+    <button onclick="openModal('fuertes')">View Work</button>
   </div>
   <div class="card-right" style="background-image:url('fantasy-art.jpg');"></div>
 </div>
 
 <div class="card kurt">
-  <div class="card-left"><img src="image/kurt.png" alt="Kurt"></div>
+  <div class="card-left"><img src="image/Kurt.png" alt="Kurt"></div>
   <div class="card-center">
     <h3>Kurt</h3>
     <p>Gotham Theme</p>
-    <button onclick="openModal('Kurt')">View Work</button>
+    <button onclick="openModal('kurt')">View Work</button>
   </div>
   <div class="card-right" style="background-image:url('gotham-art.jpg');"></div>
 </div>
 
 <div class="card antoine">
-  <div class="card-left"><img src="image/antoine.png" alt="Antoine"></div>
+  <div class="card-left"><img src="image/Antoine.png" alt="Antoine"></div>
   <div class="card-center">
     <h3>Antoine</h3>
     <p>Usep Theme</p>
-    <button onclick="openModal('Antoine')">View Work</button>
+    <button onclick="openModal('antoine')">View Work</button>
   </div>
   <div class="card-right" style="background-image:url('usep-art.jpg');"></div>
 </div>
@@ -308,7 +307,7 @@ nav ul li a:hover {color:#e67e22;}
   <div class="card-center">
     <h3>Will</h3>
     <p>Pixel Retro Theme</p>
-    <button onclick="openModal('Will')">View Work</button>
+    <button onclick="openModal('will')">View Work</button>
   </div>
   <div class="card-right" style="background-image:url('pixel-art.jpg');"></div>
 </div>
@@ -319,14 +318,43 @@ nav ul li a:hover {color:#e67e22;}
   <div class="close" onclick="closeModal()">×</div>
   <div class="modal-content">
     <h2 id="modalTitle"></h2>
-    <p>Insert essay or portfolio content here. Scrollable, long content allowed.</p>
+    <p id="modalText">Content goes here.</p>
   </div>
 </div>
 
 <script>
-function openModal(name){
+const workData = {
+  kris: {
+    title:"Kris Karl - Space Theme",
+    content:"Kris Karl explores the depths of space through vibrant digital artwork, focusing on cosmic patterns and galactic designs."
+  },
+  tan: {
+    title:"Tan - Acid Chrome Theme",
+    content:"Tan's work features acid chrome aesthetics with neon gradients and futuristic metallic textures for a modern digital vibe."
+  },
+  fuertes: {
+    title:"Fuertes - Fantasy Theme",
+    content:"Fuertes brings magical worlds to life with fantasy-inspired illustrations, full of mythical creatures and enchanted landscapes."
+  },
+  kurt: {
+    title:"Kurt - Gotham Theme",
+    content:"Kurt's creations reflect a Gotham-style atmosphere, dark urban aesthetics, and noir-inspired visual storytelling."
+  },
+  antoine: {
+    title:"Antoine - Usep Theme",
+    content:"Antoine showcases projects inspired by academic and historical themes, integrating educational elements with creative design."
+  },
+  will: {
+    title:"Will - Pixel Retro Theme",
+    content:"Will revives retro pixel art with nostalgic game-inspired visuals and vibrant color palettes reminiscent of classic 8-bit games."
+  }
+};
+
+function openModal(person){
+  const data = workData[person];
   document.getElementById("modal").style.display="flex";
-  document.getElementById("modalTitle").innerText = name + " - Work 1";
+  document.getElementById("modalTitle").innerText = data.title;
+  document.getElementById("modalText").innerText = data.content;
 }
 function closeModal(){
   document.getElementById("modal").style.display="none";
