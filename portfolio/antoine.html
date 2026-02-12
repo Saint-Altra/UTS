@@ -1,40 +1,41 @@
-<div class="portfolio-container">
+<div id="design-slot"></div>
 
-    <div class="portfolio-left">
-        <div class="npc-image"></div>
-        <div class="npc-description">
+<div class="menu-layout">
+
+    <div class="left-panel">
+        <div class="profile-image"></div>
+        <div class="profile-description">
             <h3>Antoine</h3>
             <p>
-                This essay reflects structured reasoning and disciplined thought.
+                Structured, disciplined, analytical.
+                Focused on precision and clarity.
             </p>
         </div>
     </div>
 
-    <div class="portfolio-right">
-        <div class="portfolio-header">
-            <h2>Essay 1</h2>
-            <span class="tag">Literature</span>
-        </div>
+    <div class="right-panel">
+        <h2>Works</h2>
 
-        <div class="portfolio-body">
-            <p>
-                Place your essay content here.
-            </p>
+        <button class="work-btn" onclick="openEssay1()">
+            Essay 1
+        </button>
 
-            <button class="menu-btn" onclick="goBack()">
-                Back
-            </button>
-        </div>
     </div>
 
 </div>
 
 <script>
-function goBack() {
-    fetch("portfolio.html")
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("portfolio-target").innerHTML = data;
-        });
+fetch("../menuDesigns/antoinedes.html")
+.then(res => res.text())
+.then(data => {
+    document.getElementById("design-slot").innerHTML = data;
+});
+
+function openEssay1() {
+    fetch("essay1.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("portfolio-target").innerHTML = data;
+    });
 }
 </script>
