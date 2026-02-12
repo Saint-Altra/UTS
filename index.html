@@ -48,16 +48,10 @@
 
         #player {
             position: absolute;
-            background-color: #3b82f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 8px;
-            font-weight: bold;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             z-index: 20;
-            border: 2px solid rgba(255,255,255,0.5);
-            box-shadow: 4px 4px 0 0 rgba(0,0,0,0.5);
         }
 
         .npc {
@@ -188,7 +182,7 @@
 
         <div id="world">
             <div id="background"></div>
-            <div id="player">YOU</div>
+            <div id="player"></div>
         </div>
 
         <div id="modal-container" class="modal-overlay" onclick="closeMenu()">
@@ -236,6 +230,7 @@
         backgroundEl.style.width = WORLD_WIDTH + 'px';
         playerEl.style.width = PLAYER_WIDTH + 'px';
         playerEl.style.height = PLAYER_HEIGHT + 'px';
+        playerEl.style.backgroundImage = "url('image/player.png')";
 
         npcData.forEach(npc => {
             const el = document.createElement('div');
