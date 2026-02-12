@@ -1,310 +1,302 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Utin - Portfolio</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utin - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: black;
-      font-family: 'Fira Code', monospace;
-      box-sizing: border-box;
-      height: 100vh;
-      image-rendering: pixelated;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            font-family: 'Fira Code', monospace;
+            box-sizing: border-box;
+            height: 100vh;
+            image-rendering: pixelated;
+        }
 
-    #game-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-    #world {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 100%;
-      will-change: transform;
-    }
+        #world {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            will-change: transform;
+        }
 
-    #background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("image/Battleground2.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 0;
-    }
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("image/Battleground2.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
 
-    #player {
-      position: absolute;
-      background-color: #3b82f6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 8px;
-      font-weight: bold;
-      z-index: 20;
-      border: 2px solid rgba(255,255,255,0.5);
-      box-shadow: 4px 4px 0 0 rgba(0,0,0,0.5);
-    }
+        #player {
+            position: absolute;
+            background-color: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+            z-index: 20;
+            border: 2px solid rgba(255,255,255,0.5);
+            box-shadow: 4px 4px 0 0 rgba(0,0,0,0.5);
+        }
 
-    .npc {
-      position: absolute;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      cursor: pointer;
-      z-index: 15;
-      transition: transform 0.2s;
-    }
+        .npc {
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            z-index: 15;
+            transition: transform 0.2s;
+        }
 
-    .npc:hover {
-      transform: translateY(-4px);
-    }
+        .npc:hover {
+            transform: translateY(-4px);
+        }
 
-    .npc-name {
-      position: absolute;
-      color: white;
-      font-size: 8px;
-      text-align: center;
-      z-index: 16;
-      background: rgba(0,0,0,0.8);
-      padding: 2px 6px;
-      border: 1px solid rgba(255,255,255,0.2);
-      white-space: nowrap;
-      text-transform: uppercase;
-    }
+        .npc-name {
+            position: absolute;
+            color: white;
+            font-size: 8px;
+            text-align: center;
+            z-index: 16;
+            background: rgba(0,0,0,0.8);
+            padding: 2px 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
 
-    #top-menu {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100px;
-      background: rgba(0,0,0,0.8);
-      border-bottom: 4px solid rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      z-index: 100;
-      color: white;
-    }
+        #top-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: rgba(0,0,0,0.8);
+            border-bottom: 4px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 100;
+            color: white;
+        }
 
-    .menu-title {
-      color: #fbbf24;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 4px;
-    }
+        .menu-title {
+            color: #fbbf24;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
 
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 200;
-    }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
 
-    .menu {
-      width: 800px;
-      max-width: 90vw;
-      min-height: 400px;
-      padding: 40px;
-      background-color: #0a0a0a;
-      border: 2px solid #fbbf24;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 0 50px rgba(251, 191, 36, 0.1);
-    }
+        .menu {
+            width: 800px;
+            max-width: 90vw;
+            min-height: 400px;
+            padding: 40px;
+            background-color: #0a0a0a;
+            border: 2px solid #fbbf24;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 50px rgba(251, 191, 36, 0.1);
+        }
 
-    .menu-close {
-      align-self: flex-end;
-      color: #f87171;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-top: 20px;
-      padding: 8px 16px;
-      border: 1px solid #f87171;
-    }
+        .menu-close {
+            align-self: flex-end;
+            color: #f87171;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 20px;
+            padding: 8px 16px;
+            border: 1px solid #f87171;
+        }
 
-    #guide {
-      position: absolute;
-      bottom: 30px;
-      right: 30px;
-      background: rgba(0,0,0,0.6);
-      border: 2px solid rgba(255,255,255,0.1);
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 100;
-      color: rgba(255,255,255,0.5);
-    }
+        #guide {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.1);
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            color: rgba(255,255,255,0.5);
+        }
 
-    .wasd-grid {
-      display: grid;
-      grid-template-areas: ". w ." "a s d";
-      gap: 4px;
-    }
+        .wasd-grid {
+            display: grid;
+            grid-template-areas: ". w ." "a s d";
+            gap: 4px;
+        }
 
-    .key {
-      width: 25px;
-      height: 25px;
-      border: 1px solid rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      background: rgba(255,255,255,0.05);
-    }
-  </style>
+        .key {
+            width: 25px;
+            height: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            background: rgba(255,255,255,0.05);
+        }
+    </style>
 </head>
 <body>
-  <div id="game-container">
-    <div id="menu-slot"></div>
+    <div id="game-container">
+        <nav id="top-menu">
+            <div class="menu-title">UTS HALL</div>
+        </nav>
 
-    <div id="world">
-      <div id="background"></div>
-      <div id="player">YOU</div>
+        <div id="world">
+            <div id="background"></div>
+            <div id="player">YOU</div>
+        </div>
+
+        <div id="modal-container" class="modal-overlay" onclick="closeMenu()">
+            <div class="menu" onclick="event.stopPropagation()">
+                <div id="portfolio-target">Loading...</div>
+                <div class="menu-close" onclick="closeMenu()">[CLOSE]</div>
+            </div>
+        </div>
+
+        <div id="guide">
+            <div class="wasd-grid">
+                <div class="key" style="grid-area: w">W</div>
+                <div class="key" style="grid-area: a">A</div>
+                <div class="key" style="grid-area: s">S</div>
+                <div class="key" style="grid-area: d">D</div>
+            </div>
+            <div class="guide-text">MOVE</div>
+        </div>
     </div>
 
-    <div id="modal-container" class="modal-overlay" onclick="closeMenu()">
-      <div class="menu" onclick="event.stopPropagation()">
-        <div id="portfolio-target">Loading...</div>
-        <div class="menu-close" onclick="closeMenu()">[CLOSE]</div>
-      </div>
-    </div>
+    <script>
+        const WORLD_WIDTH = 1800;      
+        const GROUND_HEIGHT = 380;   
+        const PLAYER_WIDTH = 140;       
+        const PLAYER_HEIGHT = 180;     
+        const PLAYER_SPEED = 9;     
 
-    <div id="guide-slot"></div>
-  </div>
+        const npcData = [
+            {id: 1, x: 400, name: "Antoine", img: "image/Antoine.png", file: "antoine.html"},
+            {id: 2, x: 650, name: "Daniel", img: "image/daniel.png", file: "daniel.html"},
+            {id: 3, x: 900, name: "Justine", img: "image/Justine.png", file: "justine.html"},
+            {id: 4, x: 1150, name: "Kris Karl", img: "image/kriskarl.png", file: "karl.html"},
+            {id: 5, x: 1400, name: "Kurt", img: "image/Kurt.png", file: "kurt.html"},
+            {id: 6, x: 1650, name: "Will", img: "image/will.png", file: "will.html"}
+        ];
 
-  <script>
-    const WORLD_WIDTH = 1800;
-    const GROUND_HEIGHT = 380;
-    const PLAYER_WIDTH = 140;
-    const PLAYER_HEIGHT = 180;
-    const PLAYER_SPEED = 9;
 
-    const worldEl = document.getElementById('world');
-    const playerEl = document.getElementById('player');
-    const backgroundEl = document.getElementById('background');
-    const modalContainer = document.getElementById('modal-container');
-    const portfolioTarget = document.getElementById('portfolio-target');
+        const worldEl = document.getElementById('world');
+        const playerEl = document.getElementById('player');
+        const backgroundEl = document.getElementById('background');
+        const modalContainer = document.getElementById('modal-container');
+        const portfolioTarget = document.getElementById('portfolio-target');
 
-    worldEl.style.width = WORLD_WIDTH + 'px';
-    backgroundEl.style.width = WORLD_WIDTH + 'px';
-    playerEl.style.width = PLAYER_WIDTH + 'px';
-    playerEl.style.height = PLAYER_HEIGHT + 'px';
+        worldEl.style.width = WORLD_WIDTH + 'px';
+        backgroundEl.style.width = WORLD_WIDTH + 'px';
+        playerEl.style.width = PLAYER_WIDTH + 'px';
+        playerEl.style.height = PLAYER_HEIGHT + 'px';
 
-    async function injectHtmlIntoSlot(slotId, url) {
-      const slot = document.getElementById(slotId);
-      if (!slot) return;
-      try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to fetch ' + url);
-        slot.innerHTML = await res.text();
-      } catch (e) {
-        slot.innerHTML = '';
-      }
-    }
+        npcData.forEach(npc => {
+            const el = document.createElement('div');
+            el.className = 'npc';
+            el.style.width = PLAYER_WIDTH + 'px';
+            el.style.height = PLAYER_HEIGHT + 'px';
+            el.style.left = npc.x + 'px';
+            el.style.bottom = '50px';
+            el.style.backgroundImage = `url(${npc.img})`;
+            el.onclick = () => openPortfolio(npc.file);
+            worldEl.appendChild(el);
 
-    function executeScriptsWithin(container) {
-      const scripts = Array.from(container.querySelectorAll('script'));
-      scripts.forEach((oldScript) => {
-        const newScript = document.createElement('script');
-        for (const attr of oldScript.attributes) newScript.setAttribute(attr.name, attr.value);
-        newScript.textContent = oldScript.textContent;
-        oldScript.replaceWith(newScript);
-      });
-    }
+            const nameEl = document.createElement('div');
+            nameEl.className = 'npc-name';
+            nameEl.innerText = npc.name;
+            nameEl.style.left = npc.x + 'px';
+            nameEl.style.bottom = (50 + PLAYER_HEIGHT + 10) + 'px';
+            worldEl.appendChild(nameEl);
+        });
 
-    async function injectNpcPack(url) {
-      const temp = document.createElement('div');
-      try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to fetch ' + url);
-        temp.innerHTML = await res.text();
-      } catch (e) {
-        return;
-      }
-
-      const nodes = Array.from(temp.childNodes);
-      nodes.forEach((n) => {
-        if (n.nodeType === Node.ELEMENT_NODE) {
-          worldEl.appendChild(n);
+        async function openPortfolio(file) {
+            modalContainer.style.display = 'flex';
+            try {
+                const response = await fetch(file);
+                const html = await response.text();
+                portfolioTarget.innerHTML = html;
+            } catch (e) {
+                portfolioTarget.innerHTML = '<p>Error loading portfolio.</p>';
+            }
         }
-      });
 
-      executeScriptsWithin(worldEl);
-    }
+        function closeMenu() {
+            modalContainer.style.display = 'none';
+        }
 
-    injectHtmlIntoSlot('menu-slot', 'menu-and-guide.html');
-    injectHtmlIntoSlot('guide-slot', 'guide.html');
-    injectNpcPack('npcs.html');
+        let playerX = 200;
+        let playerY = 50;
+        const keys = {};
 
-    async function openPortfolio(file) {
-      modalContainer.style.display = 'flex';
-      try {
-        const response = await fetch(file, { cache: 'no-store' });
-        const html = await response.text();
-        portfolioTarget.innerHTML = html;
-      } catch (e) {
-        portfolioTarget.innerHTML = '<p>Error loading portfolio.</p>';
-      }
-    }
+        window.addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true);
+        window.addEventListener('keyup', (e) => keys[e.key.toLowerCase()] = false);
 
-    function closeMenu() {
-      modalContainer.style.display = 'none';
-    }
+        function gameLoop() {
+            if (keys['a'] || keys['arrowleft']) playerX -= PLAYER_SPEED;
+            if (keys['d'] || keys['arrowright']) playerX += PLAYER_SPEED;
+            if (keys['w'] || keys['arrowup']) playerY += PLAYER_SPEED;
+            if (keys['s'] || keys['arrowdown']) playerY -= PLAYER_SPEED;
 
-    let playerX = 200;
-    let playerY = 50;
-    const keys = {};
+            playerX = Math.max(0, Math.min(playerX, WORLD_WIDTH - PLAYER_WIDTH));
+            playerY = Math.max(0, Math.min(playerY, GROUND_HEIGHT - 5));
 
-    window.addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true);
-    window.addEventListener('keyup', (e) => keys[e.key.toLowerCase()] = false);
+            playerEl.style.left = playerX + 'px';
+            playerEl.style.bottom = playerY + 'px';
 
-    function gameLoop() {
-      if (keys['a'] || keys['arrowleft']) playerX -= PLAYER_SPEED;
-      if (keys['d'] || keys['arrowright']) playerX += PLAYER_SPEED;
-      if (keys['w'] || keys['arrowup']) playerY += PLAYER_SPEED;
-      if (keys['s'] || keys['arrowdown']) playerY -= PLAYER_SPEED;
+            const cameraX = Math.max(0, Math.min(playerX + PLAYER_WIDTH/2 - window.innerWidth/2, WORLD_WIDTH - window.innerWidth));
+            worldEl.style.transform = `translateX(-${cameraX}px)`;
 
-      playerX = Math.max(0, Math.min(playerX, WORLD_WIDTH - PLAYER_WIDTH));
-      playerY = Math.max(0, Math.min(playerY, GROUND_HEIGHT - 5));
+            requestAnimationFrame(gameLoop);
+        }
 
-      playerEl.style.left = playerX + 'px';
-      playerEl.style.bottom = playerY + 'px';
-
-      const cameraX = Math.max(0, Math.min(playerX + PLAYER_WIDTH/2 - window.innerWidth/2, WORLD_WIDTH - window.innerWidth));
-      worldEl.style.transform = `translateX(-${cameraX}px)`;
-
-      requestAnimationFrame(gameLoop);
-    }
-
-    gameLoop();
-  </script>
+        gameLoop();
+    </script>
 </body>
 </html>
