@@ -1,302 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utin - Portfolio</title>
-    <link id="npc-design" rel="stylesheet" href="">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+<meta charset="UTF-8">
+<title>Creative Collective Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#f5f5f5;
+  color:#333;
+  overflow-x:hidden;
+  position:relative;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: black;
-            font-family: 'Fira Code', monospace;
-            box-sizing: border-box;
-            height: 100vh;
-            image-rendering: pixelated;
-        }
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:linear-gradient(135deg,#e1eafc 0%,#f9f9f9 100%);
+}
 
-        #game-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+.abstract-shape {
+  position:absolute;
+  border-radius:50%;
+  opacity:0.08;
+  z-index:-1;
+  animation:float 20s linear infinite;
+}
+.shape1 { width:250px; height:250px; background:#e67e22; top:10%; left:15%; animation-duration:30s; }
+.shape2 { width:150px; height:150px; background:#3498db; top:60%; left:70%; animation-duration:25s; }
+.shape3 { width:200px; height:200px; background:#9b59b6; top:40%; left:30%; animation-duration:35s; }
+.shape4 { width:180px; height:180px; background:#2ecc71; top:75%; left:20%; animation-duration:40s; }
 
-        #world {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 100%;
-            will-change: transform;
-        }
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); }
+  50% { transform: translateY(-30px) translateX(20px) rotate(45deg); }
+  100% { transform: translateY(0) translateX(0) rotate(0deg); }
+}
 
-        #background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("image/Battleground2.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 0;
-        }
+nav {
+  position:sticky;
+  top:0;
+  width:100%;
+  background:#ffffffee;
+  backdrop-filter:blur(8px);
+  z-index:100;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+nav h1 {
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  letter-spacing:3px;
+  margin:0;
+  color:#2c3e50;
+}
+nav h1 span {color:#e67e22;}
+nav ul {
+  list-style:none;
+  display:flex;
+  gap:25px;
+  margin:0;
+  padding:0;
+}
+nav ul li a {
+  text-decoration:none;
+  color:#2c3e50;
+  font-weight:500;
+  transition:color 0.2s;
+}
+nav ul li a:hover {color:#e67e22;}
 
-        #player {
-            position: absolute;
-            width: 140px;
-            height: 180px;
-            background-image: url('image/player.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 20;
-        }
+.header {
+  text-align:center;
+  padding:60px 20px 40px;
+}
+.header h2 {
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  margin:0;
+  letter-spacing:2px;
+  color:#2c3e50;
+}
+.header p {
+  font-size:14px;
+  color:#7f8c8d;
+  margin-top:8px;
+  letter-spacing:1px;
+}
 
-        .npc {
-            position: absolute;
-            width: 140px;
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            cursor: pointer;
-            z-index: 15;
-            transition: transform 0.2s;
-        }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+  gap:40px 30px;
+  max-width:1200px;
+  margin:auto;
+  padding:50px 20px 100px;
+}
 
-        .npc:hover {
-            transform: translateY(-4px);
-        }
+.card {
+  display:flex;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  background:white;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
 
-        .npc-name {
-            position: absolute;
-            color: white;
-            font-size: 8px;
-            text-align: center;
-            z-index: 16;
-            background: rgba(0,0,0,0.8);
-            padding: 2px 6px;
-            border: 1px solid rgba(255,255,255,0.2);
-            white-space: nowrap;
-            text-transform: uppercase;
-        }
+.card-left {
+  width:80px;
+  min-width:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+.card-left img {
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #fff;
+}
 
-        #top-menu {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: rgba(0,0,0,0.8);
-            border-bottom: 4px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            z-index: 100;
-            color: white;
-        }
+.card-center {
+  flex:1;
+  padding:15px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  z-index:2;
+}
+.card-center h3 {
+  margin:0;
+  font-size:20px;
+  color:#fff;
+}
+.card-center p {
+  margin:5px 0 10px;
+  font-size:13px;
+  color:#fffdd0;
+}
+.card-center button {
+  width:120px;
+  padding:6px 12px;
+  border:1px solid #fff;
+  background:transparent;
+  color:#fff;
+  cursor:pointer;
+  border-radius:6px;
+  transition:background 0.2s, color 0.2s;
+}
+.card-center button:hover {
+  background:#fff;
+  color:#333;
+}
 
-        .menu-title {
-            color: #fbbf24;
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: 4px;
-        }
+.card-right {
+  width:180px;
+  min-width:180px;
+  background-size:cover;
+  background-position:center;
+  z-index:1;
+}
 
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-        }
+.card.kris { background:#1a1f36; }
+.card.kris::before { content:""; }
+.card.tan { background:#1e1a36; }
+.card.fuertes { background:#36211e; }
+.card.kurt { background:#2c2c2f; }
+.card.antoine { background:#1e3630; }
+.card.will { background:#36361e; }
 
-        .menu {
-            width: 800px;
-            max-width: 90vw;
-            min-height: 400px;
-            padding: 40px;
-            background-color: #0a0a0a;
-            border: 2px solid #fbbf24;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 50px rgba(251, 191, 36, 0.1);
-        }
+.modal {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:50px;
+  z-index:100;
+}
+.modal-content {
+  width:80%;
+  max-height:90%;
+  background:white;
+  padding:50px;
+  overflow-y:auto;
+  border-radius:12px;
+  color:#2c3e50;
+  border:1px solid #ccc;
+}
+.close {
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:32px;
+  cursor:pointer;
+  color:#e67e22;
+}
+.modal-content h2 {
+  font-family:'Playfair Display',serif;
+  margin-top:0;
+  color:#e67e22;
+}
+.modal-content p {
+  line-height:1.6;
+  color:#555;
+}
 
-        .menu-close {
-            align-self: flex-end;
-            color: #f87171;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 12px;
-            margin-top: 20px;
-            padding: 8px 16px;
-            border: 1px solid #f87171;
-        }
-
-        #guide {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(0,0,0,0.6);
-            border: 2px solid rgba(255,255,255,0.1);
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 100;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .wasd-grid {
-            display: grid;
-            grid-template-areas: ". w ." "a s d";
-            gap: 4px;
-        }
-
-        .key {
-            width: 25px;
-            height: 25px;
-            border: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            background: rgba(255,255,255,0.05);
-        }
-    </style>
+@media(max-width:900px){
+  .grid {grid-template-columns:1fr; padding:40px;}
+  .card {flex-direction:column;}
+  .card-left, .card-right {width:100%; min-width:auto; height:180px;}
+  .card-center {padding:15px;}
+  .modal-content{width:95%; padding:30px;}
+}
+</style>
 </head>
 <body>
-    <div id="game-container">
-        <nav id="top-menu">
-            <div class="menu-title">UTS HALL</div>
-        </nav>
 
-        <div id="world">
-            <div id="background"></div>
-            <div id="player"></div>
-        </div>
+<div class="abstract-shape shape1"></div>
+<div class="abstract-shape shape2"></div>
+<div class="abstract-shape shape3"></div>
+<div class="abstract-shape shape4"></div>
 
-        <div id="modal-container" class="modal-overlay" onclick="closeMenu()">
-            <div class="menu" onclick="event.stopPropagation()">
-                <div id="portfolio-target">Loading...</div>
-                <div class="menu-close" onclick="closeMenu()">[CLOSE]</div>
-            </div>
-        </div>
+<nav>
+  <h1>THE <span>ARCHIVE</span></h1>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
 
-        <div id="guide">
-            <div class="wasd-grid">
-                <div class="key" style="grid-area: w">W</div>
-                <div class="key" style="grid-area: a">A</div>
-                <div class="key" style="grid-area: s">S</div>
-                <div class="key" style="grid-area: d">D</div>
-            </div>
-            <div class="guide-text">MOVE</div>
-        </div>
-    </div>
+<div class="header">
+  <h2>Creative Collective Portfolio</h2>
+  <p>CURATED WORK COMPILATION 2026</p>
+</div>
 
-    <script>
-        const WORLD_WIDTH = 1800;      
-        const GROUND_HEIGHT = 380;   
-        const PLAYER_SPEED = 9;     
+<div class="grid">
 
-    const npcData = [
-        {id: 1, x: 400, name: "Antoine", img: "image/Antoine.png", folder:"antoine"},
-        {id: 2, x: 650, name: "Daniel", img: "image/daniel.png", folder:"daniel"},
-        {id: 3, x: 900, name: "Justine", img: "image/Justine.png", folder:"justine"},
-        {id: 4, x: 1150, name: "Kris Karl", img: "image/kriskarl.png", folder:"kriskarl"},
-        {id: 5, x: 1400, name: "Kurt", img: "image/Kurt.png", folder:"kurt"},
-        {id: 6, x: 1650, name: "Will", img: "image/will.png", folder:"will"}
-    ];
+<div class="card kris">
+  <div class="card-left"><img src="image/karl.png" alt="Kris Karl"></div>
+  <div class="card-center">
+    <h3>Kris Karl</h3>
+    <p>Space Theme</p>
+    <button onclick="openModal('Kris Karl')">View Work</button>
+  </div>
+  <div class="card-right" style="background-image:url('space-art.jpg');"></div>
+</div>
 
-        const worldEl = document.getElementById('world');
-        const playerEl = document.getElementById('player');
-        const modalContainer = document.getElementById('modal-container');
-        const portfolioTarget = document.getElementById('portfolio-target');
+<div class="card tan">
+  <div class="card-left"><img src="image/daniel.png" alt="Tan"></div>
+  <div class="card-center">
+    <h3>Tan</h3>
+    <p>Acid Chrome Theme</p>
+    <button onclick="openModal('Tan')">View Work</button>
+  </div>
+  <div class="card-right" style="background-image:url('acid-chrome.jpg');"></div>
+</div>
 
-        // Add NPCs
-        npcData.forEach(npc => {
-            const el = document.createElement('div');
-            el.className = 'npc';
-            el.style.left = npc.x + 'px';
-            el.style.bottom = '50px';
-            el.style.backgroundImage = `url(${npc.img})`;
-            el.onclick = () => openNPC(npc);
-            worldEl.appendChild(el);
+<div class="card fuertes">
+  <div class="card-left"><img src="image/justine.png" alt="Fuertes"></div>
+  <div class="card-center">
+    <h3>Fuertes</h3>
+    <p>Fantasy Theme</p>
+    <button onclick="openModal('Fuertes')">View Work</button>
+  </div>
+  <div class="card-right" style="background-image:url('fantasy-art.jpg');"></div>
+</div>
 
-            const nameEl = document.createElement('div');
-            nameEl.className = 'npc-name';
-            nameEl.innerText = npc.name;
-            nameEl.style.left = npc.x + 'px';
-            nameEl.style.bottom = '240px';
-            worldEl.appendChild(nameEl);
-        });
+<div class="card kurt">
+  <div class="card-left"><img src="image/kurt.png" alt="Kurt"></div>
+  <div class="card-center">
+    <h3>Kurt</h3>
+    <p>Gotham Theme</p>
+    <button onclick="openModal('Kurt')">View Work</button>
+  </div>
+  <div class="card-right" style="background-image:url('gotham-art.jpg');"></div>
+</div>
 
-        async function openNPC(npc) {
-            modalContainer.style.display = 'flex';
-            document.getElementById('npc-design').href = `portfolio/${npc.folder}/style.css`;
-            try {
-                const response = await fetch(`portfolio/${npc.folder}/content.html`);
-                const html = await response.text();
-                portfolioTarget.innerHTML = html;
-            } catch(e){
-                portfolioTarget.innerHTML = '<p>Error loading content</p>';
-            }
-        }
+<div class="card antoine">
+  <div class="card-left"><img src="image/antoine.png" alt="Antoine"></div>
+  <div class="card-center">
+    <h3>Antoine</h3>
+    <p>Usep Theme</p>
+    <button onclick="openModal('Antoine')">View Work</button>
+  </div>
+  <div class="card-right" style="background-image:url('usep-art.jpg');"></div>
+</div>
 
-        function closeMenu() {
-            modalContainer.style.display = 'none';
-        }
+<div class="card will">
+  <div class="card-left"><img src="image/will.png" alt="Will"></div>
+  <div class="card-center">
+    <h3>Will</h3>
+    <p>Pixel Retro Theme</p>
+    <button onclick="openModal('Will')">View Work</button>
+  </div>
+  <div class="card-right" style="background-image:url('pixel-art.jpg');"></div>
+</div>
 
-        async function openEssay(file) {
-            try {
-                const response = await fetch(file);
-                const html = await response.text();
-                portfolioTarget.innerHTML = html;
-            } catch(e){
-                portfolioTarget.innerHTML = '<p>Error loading essay</p>';
-            }
-        }
+</div>
 
-        let playerX = 200;
-        let playerY = 50;
-        const keys = {};
-        window.addEventListener('keydown', e => keys[e.key.toLowerCase()]=true);
-        window.addEventListener('keyup', e => keys[e.key.toLowerCase()]=false);
+<div class="modal" id="modal">
+  <div class="close" onclick="closeModal()">×</div>
+  <div class="modal-content">
+    <h2 id="modalTitle"></h2>
+    <p>Insert essay or portfolio content here. Scrollable, long content allowed.</p>
+  </div>
+</div>
 
-        function gameLoop() {
-            if(keys['a'] || keys['arrowleft']) playerX -= PLAYER_SPEED;
-            if(keys['d'] || keys['arrowright']) playerX += PLAYER_SPEED;
-            if(keys['w'] || keys['arrowup']) playerY += PLAYER_SPEED;
-            if(keys['s'] || keys['arrowdown']) playerY -= PLAYER_SPEED;
+<script>
+function openModal(name){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalTitle").innerText = name + " - Work 1";
+}
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
 
-            playerX = Math.max(0, Math.min(playerX, WORLD_WIDTH - 140));
-            playerY = Math.max(0, Math.min(playerY, GROUND_HEIGHT - 5));
-
-            playerEl.style.left = playerX+'px';
-            playerEl.style.bottom = playerY+'px';
-
-            const cameraX = Math.max(0, Math.min(playerX + 70 - window.innerWidth/2, WORLD_WIDTH - window.innerWidth));
-            worldEl.style.transform = `translateX(-${cameraX}px)`;
-
-            requestAnimationFrame(gameLoop);
-        }
-
-        gameLoop();
-    </script>
 </body>
 </html>
