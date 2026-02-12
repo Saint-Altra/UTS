@@ -214,10 +214,6 @@ nav ul li a:hover {color:#e67e22;}
   margin-top:0;
   color:#e67e22;
 }
-.modal-content p {
-  line-height:1.6;
-  color:#555;
-}
 
 @media(max-width:900px){
   .grid {grid-template-columns:1fr; padding:40px;}
@@ -308,50 +304,35 @@ nav ul li a:hover {color:#e67e22;}
 
 </div>
 
+<!-- Modal with PDF -->
 <div class="modal" id="modal">
   <div class="close" onclick="closeModal()">×</div>
   <div class="modal-content">
     <h2 id="modalTitle"></h2>
-    <p id="modalText">Content goes here.</p>
+    <iframe id="modalPDF" src="" width="100%" height="500px" style="border:none;"></iframe>
   </div>
 </div>
 
 <script>
 const workData = {
-  kris: {
-    title:"Kris Karl Cabrera",
-    content:"Kris Karl explores the depths of space through vibrant digital artwork, focusing on cosmic patterns and galactic designs."
-  },
-  tan: {
-    title:"Daniel Anthony Tan",
-    content:"Tan's work features acid chrome aesthetics with neon gradients and futuristic metallic textures for a modern digital vibe."
-  },
-  fuertes: {
-    title:"Justine P. Fuertes",
-    content:"Fuertes brings magical worlds to life with fantasy-inspired illustrations, full of mythical creatures and enchanted landscapes."
-  },
-  kurt: {
-    title:"Kurt Joseph O. Pepito",
-    content:"Kurt's creations reflect a Gotham-style atmosphere, dark urban aesthetics, and noir-inspired visual storytelling."
-  },
-  antoine: {
-    title:"Antoine Macasero",
-    content:"Antoine showcases projects inspired by academic and historical themes, integrating educational elements with creative design."
-  },
-  will: {
-    title:"Will Benjamin Babano",
-    content:"Will revives retro pixel art with nostalgic game-inspired visuals and vibrant color palettes reminiscent of classic 8-bit games."
-  }
+  kris: { title:"Kris Karl Cabrera", pdf:"pdfs/kris.pdf" },
+  tan: { title:"Daniel Anthony Tan", pdf:"pdfs/tan.pdf" },
+  fuertes: { title:"Justine P. Fuertes", pdf:"pdfs/fuertes.pdf" },
+  kurt: { title:"Kurt Joseph O. Pepito", pdf:"pdfs/kurt.pdf" },
+  antoine: { title:"Antoine Macasero", pdf:"pdfs/antoine.pdf" },
+  will: { title:"Will Benjamin Babano", pdf:"pdfs/will.pdf" }
 };
 
 function openModal(person){
   const data = workData[person];
   document.getElementById("modal").style.display="flex";
   document.getElementById("modalTitle").innerText = data.title;
-  document.getElementById("modalText").innerText = data.content;
+  document.getElementById("modalPDF").src = data.pdf;
 }
+
 function closeModal(){
   document.getElementById("modal").style.display="none";
+  document.getElementById("modalPDF").src = "";
 }
 </script>
 
