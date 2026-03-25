@@ -8,26 +8,30 @@
 </head>
 <body>
 
-<!-- Fade overlay (sits above everything, fades to/from black during transition) -->
-<div id="fade-overlay"></div>
-
-<!-- SVG templates for ornaments (hidden, cloned into curtains by JS) -->
-<svg id="svg-corner" style="display:none" viewBox="0 0 90 90" fill="none">
-  <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
-  <line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/>
-  <rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/>
-  <line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/>
-  <line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/>
-  <circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
-  <circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
-  <circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/>
-  <circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
-  <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+<!-- Crumpled-edge clip paths for the journal pages -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="crumple1" clipPathUnits="userSpaceOnUse">
+      <path d="M 3,2 L 48,0 L 120,3 L 200,1 L 290,4 L 380,1 L 460,3 L 550,0 L 630,2 L 710,1 L 791,3
+               L 794,2 L 792,80 L 794,180 L 791,290 L 793,400 L 794,520 L 792,630 L 794,740 L 791,850 L 793,960 L 794,1070 L 792,1121
+               L 794,1123
+               L 750,1123 L 660,1120 L 570,1123 L 480,1121 L 390,1123 L 300,1120 L 210,1123 L 120,1121 L 60,1123 L 10,1121 L 0,1123
+               L 2,1080 L 0,970 L 2,860 L 0,750 L 2,640 L 0,530 L 2,420 L 0,310 L 2,200 L 0,100 L 2,3 Z"/>
+    </clipPath>
+    <clipPath id="crumple2" clipPathUnits="userSpaceOnUse">
+      <path d="M 2,3 L 60,0 L 140,2 L 220,0 L 310,3 L 400,1 L 480,3 L 560,0 L 650,2 L 730,1 L 794,3
+               L 793,2 L 794,90 L 792,200 L 794,310 L 792,420 L 794,530 L 791,640 L 794,750 L 792,860 L 794,970 L 791,1080 L 794,1123
+               L 740,1122 L 650,1120 L 560,1123 L 470,1121 L 380,1123 L 290,1120 L 200,1122 L 110,1120 L 50,1123 L 5,1121 L 0,1123
+               L 1,1060 L 0,950 L 2,840 L 0,730 L 2,620 L 0,510 L 2,400 L 0,290 L 2,180 L 0,70 L 2,3 Z"/>
+    </clipPath>
+  </defs>
 </svg>
 
-<!-- Left curtain half -->
+<!-- Fade overlay -->
+<div id="fade-overlay"></div>
+
+<!-- ── LEFT CURTAIN HALF ── -->
 <div class="curtain-half" id="curtain-l">
-  <!-- Corner ornaments (TL + BL visible in this half) -->
   <div class="corner co-tl">
     <svg viewBox="0 0 90 90" fill="none">
       <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
@@ -56,12 +60,9 @@
       <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
     </svg>
   </div>
-
-  <!-- Full landing content (clipped by this half's overflow:hidden) -->
   <div class="landing-content">
     <div class="center-inner">
-
-      <div class="sub-row" id="sub-row">
+      <div class="sub-row">
         <svg width="160" height="36" viewBox="0 0 160 36" fill="none">
           <line x1="0" y1="18" x2="38" y2="18" stroke="#7a6030" stroke-width="0.8"/>
           <circle cx="40" cy="18" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
@@ -76,9 +77,7 @@
           <circle cx="67" cy="9" r="2" fill="#7a6030" opacity="0.8"/>
         </svg>
       </div>
-
       <div class="main-title" id="title">THEATER</div>
-
       <svg class="orn-div" id="orn-div" viewBox="0 0 260 70" fill="none">
         <line x1="0" y1="28" x2="68" y2="28" stroke="#7a6030" stroke-width="0.8"/>
         <path d="M 4 28 L 8 24 L 12 28 L 8 32 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
@@ -104,7 +103,6 @@
         <line x1="130" y1="46" x2="130" y2="58" stroke="#6a5228" stroke-width="0.7"/>
         <path d="M 130 58 C 127 61, 127 65, 130 67 C 133 65, 133 61, 130 58 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
       </svg>
-
       <div class="start-wrap" id="start-wrap">
         <button class="start-btn" id="start-btn">
           <span class="btn-deco">&#10022;</span>
@@ -112,14 +110,12 @@
           <span class="btn-deco">&#10022;</span>
         </button>
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- Right curtain half -->
+<!-- ── RIGHT CURTAIN HALF ── -->
 <div class="curtain-half" id="curtain-r">
-  <!-- Corner ornaments (TR + BR visible in this half) -->
   <div class="corner co-tr">
     <svg viewBox="0 0 90 90" fill="none" style="transform:scale(-1,1)">
       <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
@@ -148,8 +144,6 @@
       <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
     </svg>
   </div>
-
-  <!-- Full landing content (clipped by this half's overflow:hidden) -->
   <div class="landing-content">
     <div class="center-inner">
       <div class="sub-row">
@@ -194,7 +188,7 @@
         <path d="M 130 58 C 127 61, 127 65, 130 67 C 133 65, 133 61, 130 58 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
       </svg>
       <div class="start-wrap">
-        <button class="start-btn" style="pointer-events:none">
+        <button class="start-btn" style="pointer-events:none" aria-hidden="true">
           <span class="btn-deco">&#10022;</span>
           Start Experience
           <span class="btn-deco">&#10022;</span>
@@ -204,16 +198,74 @@
   </div>
 </div>
 
-<!-- Acts page (revealed after curtain opens) -->
-<div id="acts-page">
-  <div class="acts-header">
-    <div class="acts-header-label">Playbill · Season 2025 · Eight Acts</div>
-    <div class="acts-header-title">Written Worlds</div>
-    <div class="acts-header-sub">A Grand Theater of Student Writing</div>
-  </div>
-  <div id="acts-container"></div>
-  <div class="page-end">— End of Program —</div>
-</div>
+<!-- ── JOURNAL SPREAD (revealed after curtain opens) ── -->
+<div id="journal-page">
+  <div class="journal-body">
+    <div class="scene-container">
+      <canvas id="tableCanvas"></canvas>
+      <div id="lightOverlay"></div>
+      <div id="lampGlow"></div>
+
+      <div class="spread">
+
+        <!-- Page 1 -->
+        <div class="page-wrap">
+          <div class="prop-sticky">for<br><strong>Understanding<br>the Self</strong><br><br>✏ Entry 1</div>
+          <div class="journal-page p1" style="clip-path:url(#crumple1);">
+            <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(150,65,28,0.68) 0px,rgba(150,65,28,0.68) 7px,rgba(190,100,48,0.58) 7px,rgba(190,100,48,0.58) 14px);"></div>
+            <svg style="position:absolute;top:28px;right:74px;transform:rotate(6deg);z-index:20;" width="22" height="50" viewBox="0 0 22 50"><path d="M11 3C6 3 3 7 3 11L3 38C3 44 7 48 11 48C15 48 19 44 19 38L19 13C19 9 17 6 14 6C11 6 10 9 10 13L10 36C10 39 12 41 14 41C16 41 18 39 18 36L18 16" stroke="#c0bfb5" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            <div class="cring" style="width:72px;height:72px;bottom:198px;right:63px;border:2.5px solid rgba(75,40,8,0.18);"></div>
+            <div class="cring" style="width:60px;height:60px;bottom:204px;right:69px;border:1.5px solid rgba(75,40,8,0.1);"></div>
+            <div class="stain" style="width:88px;height:75px;top:46px;right:80px;transform:rotate(12deg);"></div>
+            <div class="mgnote">Understanding the Self &nbsp;·&nbsp; Entry 1</div>
+            <div class="inner">
+              <span class="entry-label">Entry No. 1 &nbsp;—&nbsp; Early Childhood (6 years old and below)</span>
+              <h1>Six years in a<br><span class="blur">millisecond.</span></h1>
+              <svg width="240" height="12" viewBox="0 0 240 12" fill="none" style="display:block;margin:6px 0 14px 2px;"><path d="M2 7 Q18 3 36 8 Q54 13 72 7 Q90 2 108 8 Q126 14 144 7 Q162 2 180 8 Q198 13 218 7 Q230 4 238 6" stroke="#833b1c" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              <span class="datescrawl">the early years — blurry, warm, whole.</span>
+              <div class="epigraph"><p>I don't really remember most of it.<br>I just remember it felt okay. More than okay.</p></div>
+              <p class="bp first">Honestly, the first six years of my life are mostly a blur. I know the facts more than I actually remember them. I lived with my grandparents, my mother was away, I spent most of my time outside. But when I try to actually picture it, the memories are hazy. Like trying to remember a dream after you've been awake for hours or like a lowered resolution of my life. The feelings are there. The details, not so much.</p>
+              <span class="aside">but the feeling, that part I still remember</span>
+              <p class="bp">What I do remember is this: I called my grandparents Mama and Papa, and it never felt strange. They weren't my grandparents in any way that mattered to me back then they were just my parents. That's all I knew. Mama was the one who was there, and Papa was the one who was there too. That was my whole world, and it was enough. It was more than enough.</p>
+              <div class="memblock">
+                <div class="mc mama"><div class="mcn">Mama.</div><div class="mcd">My grandmother. But just Mama to me. The one who fed me, the one whose house smelled like home. Still does.</div><span class="mcf">I didn't know to miss anything, she was everything</span></div>
+                <div class="mc papa"><div class="mcn">Papa.</div><div class="mcd">My grandfather. But just Papa to me. I was always excited when he comes home from work at 5pm.</div><span class="mcf">never had to wonder if he'd be there, he just was</span></div>
+                <div class="mccon">&amp;</div>
+              </div>
+              <p class="bp">Outside was everything. I don't know how to explain what that was like to someone who grew up differently, the mud, the grass, playing in the rain, and the smell of the earth after it rained. We played marbles on the ground, collected stickers like they were treasure, had spider fights (I wish i was still brave like how i was back then, i have arachnophobia now). It sounds so small now but back then it was <em>everything.</em> That was the whole world. That patch of ground with the neighbor's kids was all I needed.</p>
+            </div>
+            <div class="pgnum">— 1 —</div>
+          </div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page-wrap">
+          <div class="prop-scrap">to be<br>continued...</div>
+          <div class="journal-page p2" style="clip-path:url(#crumple2);">
+            <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(50,82,40,0.62) 0px,rgba(50,82,40,0.62) 6px,rgba(80,122,60,0.52) 6px,rgba(80,122,60,0.52) 12px);"></div>
+            <div class="stain" style="width:58px;height:50px;top:108px;right:88px;transform:rotate(-8deg);"></div>
+            <div class="stain" style="width:78px;height:68px;bottom:168px;right:58px;opacity:0.85;"></div>
+            <div class="mgnote">Understanding the Self &nbsp;·&nbsp; Entry 1 (cont.)</div>
+            <div class="inner">
+              <span class="contlabel">...continued</span>
+              <span class="aside">marbles, stickers, spiders, that was life</span>
+              <p class="bp">There were no problems yet. I think that's the thing I miss most when I look back at that time, not the games, not even the people, but just the <em>feeling</em> of having no problems. Nothing was complicated. Nothing hurt in that quiet, lingering way things hurt when you're older. I was just a kid playing outside, and Mama and Papa were just inside waiting, and that was the whole of it.</p>
+              <div class="keymem"><p>I do remember one clear moment, sitting at a desk somewhere,<br>learning to write my first letters. <span class="hl">My mother was there.</span><br>I don't remember the school. I barely remember what i wrote, I think it was those single paper of a lower and an uppercase of a letter.<br>But I remember she was watching, and I remember wanting<br>to get it right because she was.<br><br><em>That might be the first time I felt like someone was proud of me.</em></p></div>
+              <p class="bp">When I think about who I was at that age, I think I was just, unbothered. Happy in that simple, unthinking way kids are happy when they don't know anything is missing. And I think that came from Mama and Papa. They gave me a home that felt so complete that I didn't go looking for what wasn't there. That's not a small thing. <span class="crossed">I didn't realize</span> I'm only starting to realize how big that actually is.</p>
+              <div class="closing">
+                <svg width="180" height="16" viewBox="0 0 180 16" fill="none" style="margin-bottom:18px;"><line x1="0" y1="8" x2="72" y2="8" stroke="#a08858" stroke-width="0.8"/><path d="M78 8 Q84 3 90 8 Q96 13 102 8" stroke="#a08858" stroke-width="1.2" fill="none"/><line x1="108" y1="8" x2="180" y2="8" stroke="#a08858" stroke-width="0.8"/></svg>
+                <p class="clos-main">Six years felt like a millisecond<br>probably because none of it felt like something I had to survive.<br>It was just life. Easy, muddy, warm life.</p>
+                <span class="clos-coda">I miss that version of me sometimes.<br>the one who didn't know problems existed yet.</span>
+              </div>
+            </div>
+            <div class="pgnum">— 2 —</div>
+          </div>
+        </div>
+
+      </div><!-- /.spread -->
+    </div><!-- /.scene-container -->
+  </div><!-- /.journal-body -->
+</div><!-- /#journal-page -->
 
 <script src="script.js"></script>
 </body>
