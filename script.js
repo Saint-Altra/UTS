@@ -153,10 +153,10 @@ window.addEventListener('resize',function(){
 /* -- Theater Prologue on Journal -- */
 var theaterLines=[
   'These are the compiled reflections of eight voices \u2014',
-  'eight souls who set the stage with ink alone.',
+  'eight perspectives expressed through writing.',
   'What you hold before you are not mere essays.',
-  'They are confessions. Curtain calls. Acts of becoming.',
-  'The house lights dim. The theater awaits.'
+  'but personal thoughts and reflections on different topics.',
+  'Each piece shares a moment of understanding and perspective.'
 ];
 
 function showTheaterPrologue(){
