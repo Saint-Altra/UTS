@@ -152,7 +152,7 @@ window.addEventListener('resize',function(){
 
 /* -- Theater Prologue on Journal -- */
 var theaterLines=[
-  'These are the compiled reflections of eight voices, \u2014',
+  'These are the compiled reflections of eight voices,',
   'eight perspectives expressed through writing.',
   'What you hold before you are not mere essays,',
   'but personal thoughts and reflections on different topics.',
