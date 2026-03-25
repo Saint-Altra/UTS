@@ -2,338 +2,219 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>UTS Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-body {
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:#f5f5f5;
-  color:#333;
-  overflow-x:hidden;
-  position:relative;
-}
-
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background:linear-gradient(135deg,#e1eafc 0%,#f9f9f9 100%);
-}
-
-.abstract-shape {
-  position:absolute;
-  border-radius:50%;
-  opacity:0.08;
-  z-index:-1;
-  animation:float 20s linear infinite;
-}
-.shape1 { width:250px; height:250px; background:#e67e22; top:10%; left:15%; animation-duration:30s; }
-.shape2 { width:150px; height:150px; background:#3498db; top:60%; left:70%; animation-duration:25s; }
-.shape3 { width:200px; height:200px; background:#9b59b6; top:40%; left:30%; animation-duration:35s; }
-.shape4 { width:180px; height:180px; background:#2ecc71; top:75%; left:20%; animation-duration:40s; }
-
-@keyframes float {
-  0% { transform: translateY(0) translateX(0) rotate(0deg); }
-  50% { transform: translateY(-30px) translateX(20px) rotate(45deg); }
-  100% { transform: translateY(0) translateX(0) rotate(0deg); }
-}
-
-nav {
-  position:sticky;
-  top:0;
-  width:100%;
-  background:#ffffffee;
-  backdrop-filter:blur(8px);
-  z-index:100;
-  padding:15px 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-nav h1 {
-  font-family:'Playfair Display',serif;
-  font-size:28px;
-  letter-spacing:3px;
-  margin:0;
-  color:#2c3e50;
-}
-nav h1 span {color:#e67e22;}
-nav ul {
-  list-style:none;
-  display:flex;
-  gap:25px;
-  margin:0;
-  padding:0;
-}
-nav ul li a {
-  text-decoration:none;
-  color:#2c3e50;
-  font-weight:500;
-  transition:color 0.2s;
-}
-nav ul li a:hover {color:#e67e22;}
-
-.header {
-  text-align:center;
-  padding:60px 20px 40px;
-}
-.header h2 {
-  font-family:'Playfair Display',serif;
-  font-size:42px;
-  margin:0;
-  letter-spacing:2px;
-  color:#2c3e50;
-}
-.header p {
-  font-size:14px;
-  color:#7f8c8d;
-  margin-top:8px;
-  letter-spacing:1px;
-}
-
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-  gap:40px 30px;
-  max-width:1200px;
-  margin:auto;
-  padding:50px 20px 100px;
-}
-
-.card {
-  display:flex;
-  border-radius:12px;
-  overflow:hidden;
-  position:relative;
-  background:white;
-  box-shadow:0 4px 12px rgba(0,0,0,0.05);
-  transition:transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform:translateY(-6px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
-}
-
-.card-left {
-  width:80px;
-  min-width:80px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:2;
-}
-.card-left img {
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid #fff;
-}
-
-.card-center {
-  flex:1;
-  padding:15px 20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  z-index:2;
-}
-.card-center h3 {
-  margin:0;
-  font-size:20px;
-  color:#fff;
-}
-.card-center p {
-  margin:5px 0 10px;
-  font-size:13px;
-  color:#fffdd0;
-}
-.card-center button {
-  width:120px;
-  padding:6px 12px;
-  border:1px solid #fff;
-  background:transparent;
-  color:#fff;
-  cursor:pointer;
-  border-radius:6px;
-  transition:background 0.2s, color 0.2s;
-}
-.card-center button:hover {
-  background:#fff;
-  color:#333;
-}
-
-.card-right {
-  width:180px;
-  min-width:180px;
-  background-size:cover;
-  background-position:center;
-  z-index:1;
-}
-
-.card.kris { background:#1a1f36; }
-.card.tan { background:#1e1a36; }
-.card.fuertes { background:#36211e; }
-.card.kurt { background:#2c2c2f; }
-.card.antoine { background:#1e3630; }
-.card.will { background:#36361e; }
-
-.modal {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:50px;
-  z-index:100;
-}
-.modal-content {
-  width:80%;
-  max-height:90%;
-  background:white;
-  padding:50px;
-  overflow-y:auto;
-  border-radius:12px;
-  color:#2c3e50;
-  border:1px solid #ccc;
-}
-.close {
-  position:absolute;
-  top:20px;
-  right:30px;
-  font-size:32px;
-  cursor:pointer;
-  color:#e67e22;
-}
-.modal-content h2 {
-  font-family:'Playfair Display',serif;
-  margin-top:0;
-  color:#e67e22;
-}
-
-@media(max-width:900px){
-  .grid {grid-template-columns:1fr; padding:40px;}
-  .card {flex-direction:column;}
-  .card-left, .card-right {width:100%; min-width:auto; height:180px;}
-  .card-center {padding:15px;}
-  .modal-content{width:95%; padding:30px;}
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Written Worlds — Grand Theater</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="abstract-shape shape1"></div>
-<div class="abstract-shape shape2"></div>
-<div class="abstract-shape shape3"></div>
-<div class="abstract-shape shape4"></div>
+<!-- Fade overlay (sits above everything, fades to/from black during transition) -->
+<div id="fade-overlay"></div>
 
-<nav>
-  <h1>UTS <span>ARCHIVE</span></h1>
-</nav>
+<!-- SVG templates for ornaments (hidden, cloned into curtains by JS) -->
+<svg id="svg-corner" style="display:none" viewBox="0 0 90 90" fill="none">
+  <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
+  <line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/>
+  <rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+  <line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/>
+  <line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/>
+  <circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+  <circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+  <circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+  <circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+  <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+</svg>
 
-<div class="header">
-  <h2>U.T.S. Collective Portfolio</h2>
-  <p>CURATED WORKS COMPILATION 2026</p>
-</div>
-
-<div class="grid">
-
-<div class="card kris">
-  <div class="card-left"><img src="image/karl.png" alt="Kris Karl"></div>
-  <div class="card-center">
-    <h3>Kris Karl Cabrera</h3>
-    <p>Student</p>
-    <button onclick="openModal('kris')">View Reflection Essay</button>
+<!-- Left curtain half -->
+<div class="curtain-half" id="curtain-l">
+  <!-- Corner ornaments (TL + BL visible in this half) -->
+  <div class="corner co-tl">
+    <svg viewBox="0 0 90 90" fill="none">
+      <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
+      <line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/>
+      <rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/>
+      <line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/>
+      <circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+      <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+    </svg>
   </div>
-  <div class="card-right" style="background-image:url('space-art.jpg');"></div>
-</div>
-
-<div class="card tan">
-  <div class="card-left"><img src="image/daniel.png" alt="Tan"></div>
-  <div class="card-center">
-    <h3>Daniel Anthony Tan</h3>
-    <p>Student</p>
-    <button onclick="openModal('tan')">View Reflection Essay</button>
+  <div class="corner co-bl">
+    <svg viewBox="0 0 90 90" fill="none" style="transform:scale(1,-1)">
+      <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
+      <line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/>
+      <rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/>
+      <line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/>
+      <circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+      <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+    </svg>
   </div>
-  <div class="card-right" style="background-image:url('acid-chrome.jpg');"></div>
-</div>
 
-<div class="card fuertes">
-  <div class="card-left"><img src="image/justine.png" alt="Fuertes"></div>
-  <div class="card-center">
-    <h3>Justine P. Fuertes</h3>
-    <p>Student</p>
-    <button onclick="openModal('fuertes')">View Reflection Essay</button>
+  <!-- Full landing content (clipped by this half's overflow:hidden) -->
+  <div class="landing-content">
+    <div class="center-inner">
+
+      <div class="sub-row" id="sub-row">
+        <svg width="160" height="36" viewBox="0 0 160 36" fill="none">
+          <line x1="0" y1="18" x2="38" y2="18" stroke="#7a6030" stroke-width="0.8"/>
+          <circle cx="40" cy="18" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+          <path d="M 50 18 C 56 18, 62 12, 64 7 C 66 2, 74 1, 76 6 C 78 11, 72 16, 68 15 C 64 14, 63 11, 66 10" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="67" cy="9" r="2" fill="#7a6030" opacity="0.8"/>
+        </svg>
+        <span class="sub-text">Class of 2025 &nbsp;·&nbsp; Grand</span>
+        <svg width="160" height="36" viewBox="0 0 160 36" fill="none" style="transform:scaleX(-1)">
+          <line x1="0" y1="18" x2="38" y2="18" stroke="#7a6030" stroke-width="0.8"/>
+          <circle cx="40" cy="18" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+          <path d="M 50 18 C 56 18, 62 12, 64 7 C 66 2, 74 1, 76 6 C 78 11, 72 16, 68 15 C 64 14, 63 11, 66 10" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="67" cy="9" r="2" fill="#7a6030" opacity="0.8"/>
+        </svg>
+      </div>
+
+      <div class="main-title" id="title">THEATER</div>
+
+      <svg class="orn-div" id="orn-div" viewBox="0 0 260 70" fill="none">
+        <line x1="0" y1="28" x2="68" y2="28" stroke="#7a6030" stroke-width="0.8"/>
+        <path d="M 4 28 L 8 24 L 12 28 L 8 32 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+        <circle cx="60" cy="28" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+        <path d="M 72 28 C 78 28, 82 22, 84 17 C 86 12, 92 11, 94 16 C 96 21, 90 26, 87 25" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <circle cx="88" cy="24" r="1.5" fill="#7a6030"/>
+        <line x1="260" y1="28" x2="192" y2="28" stroke="#7a6030" stroke-width="0.8"/>
+        <path d="M 256 28 L 252 24 L 248 28 L 252 32 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+        <circle cx="200" cy="28" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+        <path d="M 188 28 C 182 28, 178 22, 176 17 C 174 12, 168 11, 166 16 C 164 21, 170 26, 173 25" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <circle cx="172" cy="24" r="1.5" fill="#7a6030"/>
+        <circle cx="130" cy="28" r="18" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+        <circle cx="130" cy="28" r="13" stroke="#6a5228" stroke-width="0.5" fill="none"/>
+        <path d="M 130 15 C 127 19, 127 23, 130 28 C 133 23, 133 19, 130 15 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <path d="M 117 28 C 121 25, 125 25, 130 28 C 125 31, 121 31, 117 28 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <path d="M 130 28 C 127 33, 127 37, 130 41 C 133 37, 133 33, 130 28 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <path d="M 130 28 C 135 25, 139 25, 143 28 C 139 31, 135 31, 130 28 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <circle cx="130" cy="28" r="2.5" fill="#8a6e32"/>
+        <circle cx="130" cy="10" r="1.2" fill="#6a5228"/>
+        <circle cx="130" cy="46" r="1.2" fill="#6a5228"/>
+        <circle cx="112" cy="28" r="1.2" fill="#6a5228"/>
+        <circle cx="148" cy="28" r="1.2" fill="#6a5228"/>
+        <line x1="130" y1="46" x2="130" y2="58" stroke="#6a5228" stroke-width="0.7"/>
+        <path d="M 130 58 C 127 61, 127 65, 130 67 C 133 65, 133 61, 130 58 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+      </svg>
+
+      <div class="start-wrap" id="start-wrap">
+        <button class="start-btn" id="start-btn">
+          <span class="btn-deco">&#10022;</span>
+          Start Experience
+          <span class="btn-deco">&#10022;</span>
+        </button>
+      </div>
+
+    </div>
   </div>
-  <div class="card-right" style="background-image:url('fantasy-art.jpg');"></div>
 </div>
 
-<div class="card kurt">
-  <div class="card-left"><img src="image/kurt.png" alt="Kurt"></div>
-  <div class="card-center">
-    <h3>Kurt Joseph O. Pepito</h3>
-    <p>Student</p>
-    <button onclick="openModal('kurt')">View Reflection Essay</button>
+<!-- Right curtain half -->
+<div class="curtain-half" id="curtain-r">
+  <!-- Corner ornaments (TR + BR visible in this half) -->
+  <div class="corner co-tr">
+    <svg viewBox="0 0 90 90" fill="none" style="transform:scale(-1,1)">
+      <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
+      <line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/>
+      <rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/>
+      <line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/>
+      <circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+      <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+    </svg>
   </div>
-  <div class="card-right" style="background-image:url('gotham-art.jpg');"></div>
-</div>
-
-<div class="card antoine">
-  <div class="card-left"><img src="image/Antoine.png" alt="Antoine"></div>
-  <div class="card-center">
-    <h3>Antoine Macasero</h3>
-    <p>Student</p>
-    <button onclick="openModal('antoine')">View Reflection Essay</button>
+  <div class="corner co-br">
+    <svg viewBox="0 0 90 90" fill="none" style="transform:scale(-1,-1)">
+      <line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/>
+      <line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/>
+      <rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/>
+      <line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/>
+      <circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/>
+      <circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/>
+      <circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+      <circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/>
+    </svg>
   </div>
-  <div class="card-right" style="background-image:url('usep-art.jpg');"></div>
-</div>
 
-<div class="card will">
-  <div class="card-left"><img src="image/will.png" alt="Will"></div>
-  <div class="card-center">
-    <h3>Will Benjamin Babano</h3>
-    <p>Student</p>
-    <button onclick="openModal('will')">View Reflection Essay</button>
+  <!-- Full landing content (clipped by this half's overflow:hidden) -->
+  <div class="landing-content">
+    <div class="center-inner">
+      <div class="sub-row">
+        <svg width="160" height="36" viewBox="0 0 160 36" fill="none">
+          <line x1="0" y1="18" x2="38" y2="18" stroke="#7a6030" stroke-width="0.8"/>
+          <circle cx="40" cy="18" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+          <path d="M 50 18 C 56 18, 62 12, 64 7 C 66 2, 74 1, 76 6 C 78 11, 72 16, 68 15 C 64 14, 63 11, 66 10" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="67" cy="9" r="2" fill="#7a6030" opacity="0.8"/>
+        </svg>
+        <span class="sub-text">Class of 2025 &nbsp;·&nbsp; Grand</span>
+        <svg width="160" height="36" viewBox="0 0 160 36" fill="none" style="transform:scaleX(-1)">
+          <line x1="0" y1="18" x2="38" y2="18" stroke="#7a6030" stroke-width="0.8"/>
+          <circle cx="40" cy="18" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+          <path d="M 50 18 C 56 18, 62 12, 64 7 C 66 2, 74 1, 76 6 C 78 11, 72 16, 68 15 C 64 14, 63 11, 66 10" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="67" cy="9" r="2" fill="#7a6030" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="main-title">THEATER</div>
+      <svg class="orn-div" viewBox="0 0 260 70" fill="none">
+        <line x1="0" y1="28" x2="68" y2="28" stroke="#7a6030" stroke-width="0.8"/>
+        <path d="M 4 28 L 8 24 L 12 28 L 8 32 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+        <circle cx="60" cy="28" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+        <path d="M 72 28 C 78 28, 82 22, 84 17 C 86 12, 92 11, 94 16 C 96 21, 90 26, 87 25" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <circle cx="88" cy="24" r="1.5" fill="#7a6030"/>
+        <line x1="260" y1="28" x2="192" y2="28" stroke="#7a6030" stroke-width="0.8"/>
+        <path d="M 256 28 L 252 24 L 248 28 L 252 32 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+        <circle cx="200" cy="28" r="2" stroke="#8a6e32" stroke-width="0.7" fill="none"/>
+        <path d="M 188 28 C 182 28, 178 22, 176 17 C 174 12, 168 11, 166 16 C 164 21, 170 26, 173 25" stroke="#8a6e32" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <circle cx="172" cy="24" r="1.5" fill="#7a6030"/>
+        <circle cx="130" cy="28" r="18" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+        <circle cx="130" cy="28" r="13" stroke="#6a5228" stroke-width="0.5" fill="none"/>
+        <path d="M 130 15 C 127 19, 127 23, 130 28 C 133 23, 133 19, 130 15 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <path d="M 117 28 C 121 25, 125 25, 130 28 C 125 31, 121 31, 117 28 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <path d="M 130 28 C 127 33, 127 37, 130 41 C 133 37, 133 33, 130 28 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <path d="M 130 28 C 135 25, 139 25, 143 28 C 139 31, 135 31, 130 28 Z" stroke="#8a6e32" stroke-width="0.6" fill="none"/>
+        <circle cx="130" cy="28" r="2.5" fill="#8a6e32"/>
+        <circle cx="130" cy="10" r="1.2" fill="#6a5228"/>
+        <circle cx="130" cy="46" r="1.2" fill="#6a5228"/>
+        <circle cx="112" cy="28" r="1.2" fill="#6a5228"/>
+        <circle cx="148" cy="28" r="1.2" fill="#6a5228"/>
+        <line x1="130" y1="46" x2="130" y2="58" stroke="#6a5228" stroke-width="0.7"/>
+        <path d="M 130 58 C 127 61, 127 65, 130 67 C 133 65, 133 61, 130 58 Z" stroke="#7a6030" stroke-width="0.7" fill="none"/>
+      </svg>
+      <div class="start-wrap">
+        <button class="start-btn" style="pointer-events:none">
+          <span class="btn-deco">&#10022;</span>
+          Start Experience
+          <span class="btn-deco">&#10022;</span>
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="card-right" style="background-image:url('pixel-art.jpg');"></div>
 </div>
 
-</div>
-
-<div class="modal" id="modal">
-  <div class="close" onclick="closeModal()">×</div>
-  <div class="modal-content">
-    <h2 id="modalTitle"></h2>
-    <iframe id="modalPDF" src="" width="100%" height="500px" style="border:none;"></iframe>
+<!-- Acts page (revealed after curtain opens) -->
+<div id="acts-page">
+  <div class="acts-header">
+    <div class="acts-header-label">Playbill · Season 2025 · Eight Acts</div>
+    <div class="acts-header-title">Written Worlds</div>
+    <div class="acts-header-sub">A Grand Theater of Student Writing</div>
   </div>
+  <div id="acts-container"></div>
+  <div class="page-end">— End of Program —</div>
 </div>
 
-<script>
-const workData = {
-  kris: { title:"Kris Karl Cabrera", pdf:"pdfs/karl.pdf" },
-  tan: { title:"Daniel Anthony Tan", pdf:"pdfs/tan.pdf" },
-  fuertes: { title:"Justine P. Fuertes", pdf:"pdfs/Fuertes.pdf" },
-  kurt: { title:"Kurt Joseph O. Pepito", pdf:"pdfs/Kurt.pdf" },
-  antoine: { title:"Antoine Macasero", pdf:"pdfs/Antoine.pdf" },
-  will: { title:"Will Benjamin Babano", pdf:"pdfs/Will.pdf" }
-};
-
-function openModal(person){
-  const data = workData[person];
-  document.getElementById("modal").style.display="flex";
-  document.getElementById("modalTitle").innerText = data.title;
-  document.getElementById("modalPDF").src = data.pdf;
-}
-
-function closeModal(){
-  document.getElementById("modal").style.display="none";
-  document.getElementById("modalPDF").src = "";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
