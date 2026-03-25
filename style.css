@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&display=swap');
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  width:100%; height:100%;
+  background:#000;
+  overflow-x:hidden;
+}
+
+/* ── FADE OVERLAY ── */
+#fade-overlay {
+  position:fixed; inset:0;
+  background:#000;
+  z-index:200;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.7s ease;
+}
+#fade-overlay.fade-in  { opacity:1; pointer-events:all; }
+#fade-overlay.fade-out { opacity:0; pointer-events:none; }
+
+/* ── CURTAIN HALVES ──
+   Both halves are fixed and each contains a full-viewport copy of the landing
+   content. overflow:hidden clips each half to its own side. On open they slide apart.
+*/
+.curtain-half {
+  position:fixed;
+  top:0; bottom:0;
+  width:50%;
+  overflow:hidden;
+  background:#000;
+  z-index:100;
+  transition:transform 1.9s cubic-bezier(0.77,0,0.175,1);
+}
+#curtain-l { left:0; }
+#curtain-r { right:0; }
+
+#curtain-l.open { transform:translateX(-100%); }
+#curtain-r.open  { transform:translateX(100%); }
+
+/* ── LANDING CONTENT ──
+   A 100vw-wide block that sits inside each half.
+   Left half: left:0 → shows left portion.
+   Right half: right:0 → shows right portion.
+*/
+.landing-content {
+  position:absolute;
+  top:0; height:100%;
+  width:100vw;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#curtain-l .landing-content { left:0; }
+#curtain-r .landing-content { right:0; }
+
+/* ── CORNER ORNAMENTS ── */
+.corner {
+  position:absolute;
+  width:90px; height:90px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1.2s ease;
+}
+.corner svg { width:100%; height:100%; }
+.corner.show { opacity:1; }
+.co-tl { top:24px; left:24px; }
+.co-tr { top:24px; right:24px; }
+.co-bl { bottom:24px; left:24px; }
+.co-br { bottom:24px; right:24px; }
+
+/* ── CENTER CONTENT ── */
+.center-inner {
+  text-align:center;
+  padding:0 20px;
+  max-width:900px;
+  width:100%;
+  position:relative;
+  z-index:1;
+}
+
+.sub-row {
+  display:flex; align-items:center; justify-content:center;
+  gap:0; margin-bottom:2px;
+  opacity:0; transform:translateY(8px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+.sub-row.show { opacity:1; transform:translateY(0); }
+.sub-text {
+  font-family:'Cinzel',serif;
+  font-size:12px; letter-spacing:0.45em;
+  color:#9a7d3a; text-transform:uppercase;
+  padding:0 14px; white-space:nowrap;
+}
+
+.main-title {
+  font-family:'Cinzel',serif;
+  font-size:clamp(4rem,13vw,9.5rem);
+  font-weight:900;
+  color:#9a7d3a;
+  letter-spacing:0.12em;
+  line-height:1;
+  text-transform:uppercase;
+  opacity:0; transform:translateY(12px);
+  transition:opacity 1.4s ease, transform 1.4s ease;
+}
+.main-title.show { opacity:1; transform:translateY(0); }
+
+.orn-div {
+  width:260px; margin:10px auto 0;
+  opacity:0; display:block;
+  transition:opacity 1s ease;
+}
+.orn-div.show { opacity:1; }
+
+.start-wrap {
+  margin-top:44px;
+  opacity:0; transform:translateY(8px);
+  transition:opacity 0.9s ease, transform 0.9s ease;
+}
+.start-wrap.show { opacity:1; transform:translateY(0); }
+
+.start-btn {
+  display:inline-flex; align-items:center; gap:14px;
+  cursor:pointer; background:none; border:none;
+  color:#7a6030;
+  font-family:'Cinzel',serif;
+  font-size:12px; letter-spacing:0.4em; text-transform:uppercase;
+  transition:color 0.3s;
+}
+.start-btn:hover { color:#b09050; }
+.btn-deco { font-size:20px; color:#5a4820; transition:color 0.3s; }
+.start-btn:hover .btn-deco { color:#9a7838; }
+
+/* ── ACTS PAGE ── */
+#acts-page {
+  display:none;
+  background:#080604;
+  min-height:100vh;
+  position:relative;
+  z-index:1;
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+#acts-page.visible { opacity:1; }
+
+.acts-header {
+  text-align:center;
+  padding:80px 20px 56px;
+  border-bottom:1px solid rgba(138,110,58,0.15);
+}
+.acts-header-label {
+  font-family:'Cinzel',serif; font-size:10px;
+  letter-spacing:0.5em; color:#5a4828; text-transform:uppercase; margin-bottom:14px;
+}
+.acts-header-title {
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.6rem,4vw,3rem);
+  color:#8a6e3a; font-weight:700; letter-spacing:0.1em;
+}
+.acts-header-sub {
+  font-family:'IM Fell English',serif; font-style:italic;
+  font-size:1rem; color:#4a3a20; margin-top:10px;
+}
+
+.act {
+  display:grid;
+  grid-template-columns:240px 1fr;
+  min-height:420px;
+  border-bottom:1px solid rgba(138,110,58,0.08);
+  cursor:pointer;
+  transition:background 0.4s;
+}
+.act:hover { background:rgba(138,110,58,0.03); }
+.act.even { grid-template-columns:1fr 240px; }
+.act.even .act-left { order:2; border-left:1px solid rgba(138,110,58,0.1); border-right:none; }
+.act.even .act-right { order:1; }
+
+.act-left {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:40px 24px;
+  background:rgba(0,0,0,0.3);
+  border-right:1px solid rgba(138,110,58,0.1);
+  position:relative; overflow:hidden;
+}
+.act-ghost {
+  position:absolute;
+  font-family:'Cinzel Decorative',serif;
+  font-size:180px; font-weight:700;
+  color:rgba(138,110,58,0.04);
+  line-height:1; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  user-select:none; pointer-events:none;
+}
+.act-roman {
+  font-family:'Cinzel',serif; font-size:10px;
+  letter-spacing:0.5em; color:#4a3a18; text-transform:uppercase; margin-bottom:10px;
+}
+.act-name {
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(0.9rem,1.8vw,1.4rem);
+  color:#8a6e3a; font-weight:400;
+  text-align:center; line-height:1.3; letter-spacing:0.05em;
+}
+.act-bar {
+  position:absolute; bottom:0; left:50%;
+  transform:translateX(-50%);
+  height:2px; width:50%;
+  border-radius:2px 2px 0 0; opacity:0.5;
+}
+
+.act-right {
+  padding:44px 40px;
+  display:flex; flex-direction:column; justify-content:center; gap:22px;
+}
+
+.essay {
+  border-left:1px solid rgba(138,110,58,0.2);
+  padding:14px 20px;
+  transition:border-color 0.3s, background 0.3s;
+}
+.act:hover .essay { border-color:rgba(138,110,58,0.5); background:rgba(138,110,58,0.03); }
+.essay-title {
+  font-family:'IM Fell English',serif; font-style:italic;
+  font-size:clamp(1rem,1.8vw,1.2rem);
+  color:#8a7448; margin-bottom:8px; line-height:1.3;
+}
+.essay-excerpt {
+  font-family:'Cinzel',serif; font-size:0.75rem;
+  line-height:1.9; color:#3a2e18; letter-spacing:0.02em;
+}
+.essay-read {
+  display:inline-block; margin-top:10px;
+  font-family:'Cinzel',serif; font-size:9px;
+  letter-spacing:0.4em; color:#4a3a18; text-transform:uppercase;
+  border-bottom:1px solid #2a2010;
+  transition:color 0.2s, border-color 0.2s;
+}
+.act:hover .essay-read { color:#8a6a30; border-color:#6a5020; }
+
+.page-end {
+  text-align:center; padding:60px 20px;
+  font-family:'Cinzel',serif; font-size:10px;
+  letter-spacing:0.4em; color:#2a2010; text-transform:uppercase;
+}
+
+@media (max-width:600px) {
+  .act, .act.even { grid-template-columns:1fr; }
+  .act-left, .act.even .act-left {
+    order:0; border-right:none; border-left:none;
+    border-bottom:1px solid rgba(138,110,58,0.1);
+    min-height:140px;
+  }
+  .act.even .act-right { order:0; }
+  .corner { width:56px; height:56px; }
+  .co-tl { top:14px; left:14px; }
+  .co-tr { top:14px; right:14px; }
+  .co-bl { bottom:14px; left:14px; }
+  .co-br { bottom:14px; right:14px; }
+}
