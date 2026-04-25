@@ -150,10 +150,9 @@ window.addEventListener('resize',function(){
   if(document.getElementById('journal-page').classList.contains('visible')){scaleJournal();drawTable();}
 });
 
-/* -- Theater Prologue on Journal -- */
 var theaterLines=[
-  'These are the compiled reflections of eight voices,',
-  'eight perspectives expressed through writing.',
+  'These are the compiled reflections of seven voices,',
+  'seven perspectives expressed through writing.',
   'What you hold before you are not mere essays,',
   'but personal thoughts and reflections on different topics.',
   'Each piece shares a moment of understanding and perspective.'
