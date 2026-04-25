@@ -10,9 +10,6 @@
 </head>
 <body>
 
-<!-- ============================================================
-     ENTRY CONFIG — edit everything here, HTML below stays untouched
-     ============================================================ -->
 <script>
 const ENTRIES = {
 
@@ -37,8 +34,8 @@ const ENTRIES = {
     image:      "image/Antoine.png",
     imgCaption: "Antoine James A. Macasero",
     essays: [
-      { label: "Essay III", title: "Reflection 1", desc: "desc.", pdf: "pdfs/antoine.pdf" },
-      { label: "Essay IV",  title: "Reflection 2", desc: "desc.", pdf: "hold.pdf"         },
+      { label: "Essay I", title: "Reflection 1", desc: "desc.", pdf: "pdfs/antoine.pdf" },
+      { label: "Essay II",  title: "Reflection 2", desc: "desc.", pdf: "hold.pdf"         },
     ],
   },
 
@@ -122,7 +119,6 @@ const ENTRIES = {
 
 };
 
-// ── helpers ──────────────────────────────────────────────────────────────────
 
 const PLACEHOLDER_SVG = `<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const ARROW_SVG       = `<svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -341,9 +337,6 @@ document.addEventListener("DOMContentLoaded", renderEntries);
 </div>
 <div class="spread-wrapper">
 
-  <!-- ═══════════════════════════════════════════════════════
-       CHAPTER I  (pages 1 & 2)
-       ═══════════════════════════════════════════════════════ -->
   <div class="tab-content active" id="tab-0"><div class="spread">
 
     <div class="page-wrap"><div class="journal-page p1 entry-1" style="clip-path:url(#crumple1);">
@@ -386,9 +379,6 @@ document.addEventListener("DOMContentLoaded", renderEntries);
 
   </div></div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       CHAPTER II  (pages 3 & 4)
-       ═══════════════════════════════════════════════════════ -->
   <div class="tab-content" id="tab-1"><div class="spread">
 
     <div class="page-wrap"><div class="journal-page p1 entry-3" style="clip-path:url(#crumple1);">
@@ -431,9 +421,6 @@ document.addEventListener("DOMContentLoaded", renderEntries);
 
   </div></div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       CHAPTER III  (pages 5 & 6)
-       ═══════════════════════════════════════════════════════ -->
   <div class="tab-content" id="tab-2"><div class="spread">
 
     <div class="page-wrap"><div class="journal-page p1 entry-5" style="clip-path:url(#crumple1);">
@@ -476,9 +463,6 @@ document.addEventListener("DOMContentLoaded", renderEntries);
 
   </div></div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       CHAPTER IV  (pages 7 & 8)
-       ═══════════════════════════════════════════════════════ -->
   <div class="tab-content" id="tab-3"><div class="spread">
 
     <div class="page-wrap"><div class="journal-page p1 entry-7" style="clip-path:url(#crumple1);">
