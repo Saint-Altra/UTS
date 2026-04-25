@@ -1,3 +1,23 @@
+/* ── Audio helpers ── */
+var bgMusic=document.getElementById('audio-bg');
+var tabSound=document.getElementById('audio-tab');
+var essaySound=document.getElementById('audio-essay');
+
+function playBg(){
+  bgMusic.volume=0.35;
+  bgMusic.play().catch(function(){});
+}
+function playTab(){
+  tabSound.volume=0.6;
+  tabSound.currentTime=0;
+  tabSound.play().catch(function(){});
+}
+function playEssay(){
+  essaySound.volume=0.6;
+  essaySound.currentTime=0;
+  essaySound.play().catch(function(){});
+}
+
 function openPDF(src,title){
   playEssay();
   var modal=document.getElementById('pdf-modal');
@@ -48,27 +68,6 @@ setTimeout(function(){
   tick();
 },900);
 
-/* ── Audio helpers ── */
-var bgMusic=document.getElementById('audio-bg');
-var tabSound=document.getElementById('audio-tab');
-var essaySound=document.getElementById('audio-essay');
-
-function playBg(){
-  bgMusic.volume=0.35;
-  bgMusic.currentTime=0;
-  bgMusic.play().catch(function(){});
-}
-function playTab(){
-  tabSound.volume=0.6;
-  tabSound.currentTime=0;
-  tabSound.play().catch(function(){});
-}
-function playEssay(){
-  essaySound.volume=0.6;
-  essaySound.currentTime=0;
-  essaySound.play().catch(function(){});
-}
-
 function openCurtain(){
   var cL=document.getElementById('curtain-l'),cR=document.getElementById('curtain-r');
   var fade=document.getElementById('fade-overlay'),overlay=document.getElementById('landing-overlay');
@@ -82,8 +81,7 @@ function openCurtain(){
     journal.style.display='block';journal.getBoundingClientRect();
     journal.classList.add('visible');scaleJournal();drawTable();
     document.getElementById('edge-deco').classList.add('show');
-    // Show theater prologue overlay on top of journal
-    setTimeout(showTheaterPrologue, 600);
+    setTimeout(showTheaterPrologue,600);
   },1800);
   setTimeout(function(){fade.classList.remove('fade-in');},1900);
 }
@@ -186,7 +184,7 @@ function showTheaterPrologue(){
         var ch=line[charIdx++];
         allText+=ch;
         textEl.innerHTML=allText;
-        var delay=(ch==='.' )?380:(ch===','?200:36);
+        var delay=(ch==='.')?380:(ch===','?200:36);
         setTimeout(typeChar,delay);
       } else {
         setTimeout(typeLine,200);
