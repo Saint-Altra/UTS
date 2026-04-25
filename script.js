@@ -68,12 +68,16 @@ setTimeout(function(){
   tick();
 },900);
 
+document.getElementById('start-btn').addEventListener('click',function(){
+  playBg();
+  openCurtain();
+});
+
 function openCurtain(){
   var cL=document.getElementById('curtain-l'),cR=document.getElementById('curtain-r');
   var fade=document.getElementById('fade-overlay'),overlay=document.getElementById('landing-overlay');
   var journal=document.getElementById('journal-page');
   document.getElementById('start-btn').disabled=true;
-  playBg();
   cL.classList.add('open');cR.classList.add('open');
   setTimeout(function(){fade.classList.add('fade-in');},1100);
   setTimeout(function(){
@@ -85,7 +89,6 @@ function openCurtain(){
   },1800);
   setTimeout(function(){fade.classList.remove('fade-in');},1900);
 }
-document.getElementById('start-btn').addEventListener('click',openCurtain);
 
 var currentTab=0,isAnimating=false;
 document.querySelectorAll('.tab-btn').forEach(function(btn){
