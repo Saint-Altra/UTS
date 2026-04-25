@@ -10,6 +10,159 @@
 </head>
 <body>
 
+<!-- ============================================================
+     ENTRY CONFIG — edit everything here, HTML below stays untouched
+     ============================================================ -->
+<script>
+const ENTRIES = {
+
+  1: {
+    name:       "Kris Karl <em>Cabrera</em>",
+    type:       "Introvert",                      // shown as page-date
+    intro:      "Entry No. 1 - Chapter One",      // page-entry-label
+    desc:       "Introductions.",                 // paragraph under name
+    image:      "",                               // path or "" for placeholder
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay I",  title: "Reflection 1", desc: "description.", pdf: "pdfs/karl.pdf" },
+      { label: "Essay II", title: "Reflection 2", desc: "discription.", pdf: "hold.pdf"      },
+    ],
+  },
+
+  2: {
+    name:       "Antoine James A. <em>Macasero</em>",
+    type:       "Handsome",
+    intro:      "Entry No. 2 - Chapter One (cont.)",
+    desc:       "This person is very smart, handsome, kind, respectful, and has a great understanding of himself.",
+    image:      "",
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay III", title: "Reflection 1", desc: "desc.", pdf: "pdfs/Antoine.pdf" },
+      { label: "Essay IV",  title: "Reflection 2", desc: "desc.", pdf: "hold.pdf"         },
+    ],
+  },
+
+  3: {
+    name:       "Kurt Joseph O. <em>Pepito</em>",
+    type:       "Patient",
+    intro:      "Entry No. 3 - Chapter Two",
+    desc:       "I'm Kurt, an electronics engineering student with a strong interest in problem-solving, chess, and RF systems. I enjoy breaking down complex ideas and turning them into practical solutions.",
+    image:      "images/kurt.png",
+    imgCaption: "Kurt Joseph O. Pepito",
+    essays: [
+      { label: "Essay I",  title: "Reflection 1", desc: "ess", pdf: "hold.pdf" },
+      { label: "Essay II", title: "Reflection 2", desc: "ess", pdf: "hold.pdf" },
+    ],
+  },
+
+  4: {
+    name:       "Deeper into <em>Chapter Two</em>",
+    type:       "des",
+    intro:      "Entry No. 4 - Chapter Two (cont.)",
+    desc:       "intro",
+    image:      "",
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay III", title: "Reflection 1", desc: "ess", pdf: "hold.pdf" },
+      { label: "Essay IV",  title: "Reflection 2", desc: "ess", pdf: "hold.pdf" },
+    ],
+  },
+
+  5: {
+    name:       "Into <em>Chapter Three</em>",
+    type:       "Date or subtitle goes here",
+    intro:      "Entry No. 5 - Chapter Three",
+    desc:       "Chapter three opens a new phase. This is where the narrative turns - perhaps a shift in tone, a new setting, or a moment of reflection.",
+    image:      "",
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay I",  title: "Chapter Three - First Essay Title",  desc: "First essay of the third chapter. What new ground does it break compared to the chapters before?", pdf: "hold.pdf" },
+      { label: "Essay II", title: "Chapter Three - Second Essay Title", desc: "Companion piece to the first. Together they form the emotional core of chapter three.",            pdf: "hold.pdf" },
+    ],
+  },
+
+  6: {
+    name:       "Closing <em>Chapter Three</em>",
+    type:       "Date or subtitle goes here",
+    intro:      "Entry No. 6 - Chapter Three (cont.)",
+    desc:       "The chapter closes here. Use this page to land the central idea or leave the reader with an image that stays with them as they turn to chapter four.",
+    image:      "",
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay III", title: "Chapter Three - Third Essay Title",  desc: "Deepens the chapter's central question. A natural follow-on to the two essays on the facing page.", pdf: "hold.pdf" },
+      { label: "Essay IV",  title: "Chapter Three - Fourth Essay Title", desc: "Closes out chapter three with a sense of resolution or an open door into the final chapter.",     pdf: "hold.pdf" },
+    ],
+  },
+
+  7: {
+    name:       "The Final <em>Chapter</em>",
+    type:       "Date or subtitle goes here",
+    intro:      "Entry No. 7 - Chapter Four",
+    desc:       "The last chapter. This is where everything converges - the themes, the people, the questions. This text should feel like an arrival.",
+    image:      "",
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay I",  title: "Chapter Four - First Essay Title",  desc: "The penultimate essay of the collection. It should resonate with everything that came before while pushing toward a conclusion.", pdf: "hold.pdf" },
+      { label: "Essay II", title: "Chapter Four - Second Essay Title", desc: "Pairs with the first essay of chapter four to form the book's final statement.",                                                   pdf: "hold.pdf" },
+    ],
+  },
+
+  8: {
+    name:       "The Last <em>Page</em>",
+    type:       "Date or subtitle goes here",
+    intro:      "Entry No. 8 - Chapter Four (cont.)",
+    desc:       "The final page of the journal. Close with intention. This is the reader's last impression - a memory, a feeling, a line that stays with them.",
+    image:      "",
+    imgCaption: "Replace with your image",
+    essays: [
+      { label: "Essay III", title: "Chapter Four - Third Essay Title", desc: "Second-to-last essay. Carries the weight of everything that came before into this final act.", pdf: "hold.pdf" },
+      { label: "Essay IV",  title: "Chapter Four - Final Essay Title", desc: "The closing piece. Make its title and excerpt feel like an ending worth arriving at.",          pdf: "hold.pdf" },
+    ],
+  },
+
+};
+
+// ── helpers ──────────────────────────────────────────────────────────────────
+
+const PLACEHOLDER_SVG = `<svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const ARROW_SVG       = `<svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function buildImageHtml(e) {
+  if (e.image) {
+    return `<img src="${e.image}" alt="${e.imgCaption}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
+            <p class="page-img-caption">${e.imgCaption}</p>`;
+  }
+  return `<div class="img-placeholder">${PLACEHOLDER_SVG}</div>
+          <p class="page-img-caption">${e.imgCaption}</p>`;
+}
+
+function buildEssayHtml(essay) {
+  return `<div class="essay-block">
+    <span class="essay-block-label">${essay.label}</span>
+    <p class="essay-block-title">${essay.title}</p>
+    <p class="essay-block-excerpt">${essay.desc}</p>
+    <button class="read-essay-btn" onclick="openPDF('${essay.pdf}','${essay.label}')">
+      ${ARROW_SVG}Read Essay
+    </button>
+  </div>`;
+}
+
+function renderEntries() {
+  for (const [id, e] of Object.entries(ENTRIES)) {
+    const page = document.querySelector(`.entry-${id}`);
+    if (!page) continue;
+    page.querySelector(".page-img-wrap").innerHTML    = buildImageHtml(e);
+    page.querySelector(".page-entry-label").textContent = e.intro;
+    page.querySelector(".page-title").innerHTML       = e.name;
+    page.querySelector(".page-date").textContent      = e.type;
+    page.querySelector(".page-desc").textContent      = e.desc;
+    page.querySelector(".page-bottom").innerHTML      = e.essays.map(buildEssayHtml).join("");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", renderEntries);
+</script>
+
 <svg width="0" height="0" style="position:absolute">
   <defs>
     <clipPath id="crumple1" clipPathUnits="userSpaceOnUse">
@@ -22,17 +175,13 @@
 </svg>
 
 <div id="fade-overlay"></div>
-<!-- Audio elements -->
 <audio id="audio-bg" src="sound.mp3" loop preload="auto"></audio>
 <audio id="audio-tab" src="sound.mp3" preload="auto"></audio>
 <audio id="audio-essay" src="sound.mp3" preload="auto"></audio>
 
-
-<!-- Theater Prologue Overlay — shown on top of journal after curtain opens -->
 <div id="theater-prologue">
   <div class="tp-backdrop"></div>
   <div class="tp-box" id="tp-box">
-    <!-- Corner ornaments -->
     <svg class="tp-corner tl" viewBox="0 0 72 72" fill="none">
       <line x1="4" y1="4" x2="4" y2="58" stroke="#7a6030" stroke-width="1"/>
       <line x1="4" y1="4" x2="58" y2="4" stroke="#7a6030" stroke-width="1"/>
@@ -77,7 +226,6 @@
       <path d="M 18 18 C 24 12, 32 14, 36 20 C 40 26, 36 34, 28 32 C 20 30, 18 22, 22 18" stroke="#8a6e32" stroke-width="0.8" fill="none" stroke-linecap="round"/>
       <circle cx="23" cy="18" r="1.5" fill="#7a6030"/>
     </svg>
-
     <span class="tp-label">&#10022; &nbsp; Written Worlds &nbsp; &#10022;</span>
     <span class="tp-hrule"></span>
     <span class="tp-text" id="tp-text"></span><span class="tp-cursor" id="tp-cursor">|</span>
@@ -86,7 +234,6 @@
   </div>
 </div>
 
-<!-- PDF Modal -->
 <div id="pdf-modal">
   <div class="pdf-sheet">
     <div class="pdf-sheet-header">
@@ -97,19 +244,16 @@
   </div>
 </div>
 
-<!-- Left curtain — decorative only -->
 <div class="curtain-half" id="curtain-l">
   <div class="corner co-tl"><svg viewBox="0 0 90 90" fill="none"><line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/><line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/><rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/><line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/><line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/><circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/><circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/><circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/></svg></div>
   <div class="corner co-bl"><svg viewBox="0 0 90 90" fill="none" style="transform:scale(1,-1)"><line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/><line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/><rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/><line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/><line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/><circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/><circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/><circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/></svg></div>
 </div>
 
-<!-- Right curtain — decorative only -->
 <div class="curtain-half" id="curtain-r">
   <div class="corner co-tr"><svg viewBox="0 0 90 90" fill="none" style="transform:scale(-1,1)"><line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/><line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/><rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/><line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/><line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/><circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/><circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/><circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/></svg></div>
   <div class="corner co-br"><svg viewBox="0 0 90 90" fill="none" style="transform:scale(-1,-1)"><line x1="18" y1="10" x2="18" y2="70" stroke="#5a4520" stroke-width="0.8"/><line x1="10" y1="18" x2="70" y2="18" stroke="#5a4520" stroke-width="0.8"/><rect x="14" y="14" width="8" height="8" stroke="#5a4520" stroke-width="0.7" fill="none"/><line x1="22" y1="18" x2="55" y2="18" stroke="#3a2e12" stroke-width="0.5"/><line x1="18" y1="22" x2="18" y2="55" stroke="#3a2e12" stroke-width="0.5"/><circle cx="58" cy="18" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="18" cy="58" r="2.5" stroke="#4a3818" stroke-width="0.7" fill="none"/><circle cx="10" cy="10" r="2" stroke="#5a4520" stroke-width="0.7" fill="none"/><circle cx="26" cy="10" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/><circle cx="10" cy="26" r="1.5" stroke="#3a2e12" stroke-width="0.5" fill="none"/></svg></div>
 </div>
 
-<!-- Landing overlay — floats above both curtains at z-index 150 -->
 <div id="landing-overlay">
   <div class="center-inner">
     <div class="sub-row">
@@ -129,7 +273,6 @@
   </div>
 </div>
 
-<!-- Journal -->
 <div id="journal-page">
   <div class="journal-body">
     <div class="scale-wrapper">
@@ -145,41 +288,32 @@
       </div>
       <div id="spread-deco">
   <svg width="100%" height="100%" viewBox="0 0 1900 1300" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- top border rule -->
     <line x1="80" y1="112" x2="1820" y2="112" stroke="#7a6030" stroke-width="0.7" opacity="0.5"/>
     <line x1="80" y1="116" x2="1820" y2="116" stroke="#9a7d3a" stroke-width="0.3" opacity="0.4"/>
-    <!-- bottom border rule -->
     <line x1="80" y1="1220" x2="1820" y2="1220" stroke="#7a6030" stroke-width="0.7" opacity="0.5"/>
     <line x1="80" y1="1224" x2="1820" y2="1224" stroke="#9a7d3a" stroke-width="0.3" opacity="0.4"/>
-    <!-- left border rule -->
     <line x1="78" y1="110" x2="78" y2="1225" stroke="#7a6030" stroke-width="0.7" opacity="0.45"/>
-    <!-- right border rule -->
     <line x1="1822" y1="110" x2="1822" y2="1225" stroke="#7a6030" stroke-width="0.7" opacity="0.45"/>
-    <!-- top-left corner flourish -->
     <rect x="68" y="100" width="24" height="24" stroke="#9a7d3a" stroke-width="0.9" fill="none" opacity="0.7"/>
     <rect x="72" y="104" width="16" height="16" stroke="#7a6030" stroke-width="0.6" fill="none" opacity="0.5"/>
     <circle cx="80" cy="112" r="3" stroke="#9a7d3a" stroke-width="0.8" fill="none" opacity="0.8"/>
     <path d="M 100 112 C 108 105, 118 107, 124 114 C 130 121, 124 130, 116 128 C 108 126, 104 118, 110 114" stroke="#8a6e32" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.6"/>
     <circle cx="111" cy="113" r="2" fill="#7a6030" opacity="0.6"/>
-    <!-- top-right corner flourish -->
     <rect x="1808" y="100" width="24" height="24" stroke="#9a7d3a" stroke-width="0.9" fill="none" opacity="0.7"/>
     <rect x="1812" y="104" width="16" height="16" stroke="#7a6030" stroke-width="0.6" fill="none" opacity="0.5"/>
     <circle cx="1820" cy="112" r="3" stroke="#9a7d3a" stroke-width="0.8" fill="none" opacity="0.8"/>
     <path d="M 1800 112 C 1792 105, 1782 107, 1776 114 C 1770 121, 1776 130, 1784 128 C 1792 126, 1796 118, 1790 114" stroke="#8a6e32" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.6"/>
     <circle cx="1789" cy="113" r="2" fill="#7a6030" opacity="0.6"/>
-    <!-- bottom-left corner flourish -->
     <rect x="68" y="1208" width="24" height="24" stroke="#9a7d3a" stroke-width="0.9" fill="none" opacity="0.7"/>
     <rect x="72" y="1212" width="16" height="16" stroke="#7a6030" stroke-width="0.6" fill="none" opacity="0.5"/>
     <circle cx="80" cy="1220" r="3" stroke="#9a7d3a" stroke-width="0.8" fill="none" opacity="0.8"/>
     <path d="M 100 1220 C 108 1213, 118 1215, 124 1222 C 130 1229, 124 1238, 116 1236 C 108 1234, 104 1226, 110 1222" stroke="#8a6e32" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.6"/>
     <circle cx="111" cy="1221" r="2" fill="#7a6030" opacity="0.6"/>
-    <!-- bottom-right corner flourish -->
     <rect x="1808" y="1208" width="24" height="24" stroke="#9a7d3a" stroke-width="0.9" fill="none" opacity="0.7"/>
     <rect x="1812" y="1212" width="16" height="16" stroke="#7a6030" stroke-width="0.6" fill="none" opacity="0.5"/>
     <circle cx="1820" cy="1220" r="3" stroke="#9a7d3a" stroke-width="0.8" fill="none" opacity="0.8"/>
     <path d="M 1800 1220 C 1792 1213, 1782 1215, 1776 1222 C 1770 1229, 1776 1238, 1784 1236 C 1792 1234, 1796 1226, 1790 1222" stroke="#8a6e32" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.6"/>
     <circle cx="1789" cy="1221" r="2" fill="#7a6030" opacity="0.6"/>
-    <!-- top center ornament -->
     <line x1="780" y1="112" x2="880" y2="112" stroke="#9a7d3a" stroke-width="0.6" opacity="0.5"/>
     <line x1="1020" y1="112" x2="1120" y2="112" stroke="#9a7d3a" stroke-width="0.6" opacity="0.5"/>
     <circle cx="950" cy="112" r="28" stroke="#7a6030" stroke-width="0.7" fill="none" opacity="0.55"/>
@@ -189,17 +323,14 @@
     <path d="M 950 112 C 946 122, 946 132, 950 140 C 954 132, 954 122, 950 112 Z" stroke="#8a6e32" stroke-width="0.7" fill="none" opacity="0.6"/>
     <path d="M 950 112 C 960 108, 970 108, 978 112 C 970 116, 960 116, 950 112 Z" stroke="#8a6e32" stroke-width="0.7" fill="none" opacity="0.6"/>
     <circle cx="950" cy="112" r="4" fill="#8a6e32" opacity="0.55"/>
-    <!-- side mid ornaments left -->
     <circle cx="78" cy="666" r="6" stroke="#9a7d3a" stroke-width="0.7" fill="none" opacity="0.5"/>
     <circle cx="78" cy="666" r="3" stroke="#7a6030" stroke-width="0.5" fill="none" opacity="0.4"/>
     <line x1="78" y1="640" x2="78" y2="655" stroke="#7a6030" stroke-width="0.6" opacity="0.4"/>
     <line x1="78" y1="677" x2="78" y2="692" stroke="#7a6030" stroke-width="0.6" opacity="0.4"/>
-    <!-- side mid ornaments right -->
     <circle cx="1822" cy="666" r="6" stroke="#9a7d3a" stroke-width="0.7" fill="none" opacity="0.5"/>
     <circle cx="1822" cy="666" r="3" stroke="#7a6030" stroke-width="0.5" fill="none" opacity="0.4"/>
     <line x1="1822" y1="640" x2="1822" y2="655" stroke="#7a6030" stroke-width="0.6" opacity="0.4"/>
     <line x1="1822" y1="677" x2="1822" y2="692" stroke="#7a6030" stroke-width="0.6" opacity="0.4"/>
-    <!-- tick marks top -->
     <line x1="200" y1="109" x2="200" y2="115" stroke="#7a6030" stroke-width="0.6" opacity="0.35"/>
     <line x1="400" y1="109" x2="400" y2="115" stroke="#7a6030" stroke-width="0.6" opacity="0.35"/>
     <line x1="600" y1="109" x2="600" y2="115" stroke="#7a6030" stroke-width="0.6" opacity="0.35"/>
@@ -210,147 +341,187 @@
 </div>
 <div class="spread-wrapper">
 
-        <div class="tab-content active" id="tab-0"><div class="spread">
-          <div class="page-wrap"><div class="journal-page p1" style="clip-path:url(#crumple1);">
-            <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(150,65,28,0.68) 0px,rgba(150,65,28,0.68) 7px,rgba(190,100,48,0.58) 7px,rgba(190,100,48,0.58) 14px);"></div>
-            <div class="stain" style="width:88px;height:75px;top:46px;right:80px;transform:rotate(12deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 1 - Chapter One</span><h2 class="page-title">Kris Karl <em>Cabrera</em></h2><span class="page-date">Introvert</span><p class="page-desc">Introductions.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay I</span><p class="essay-block-title">Reflection 1</p><p class="essay-block-excerpt">description.</p><button class="read-essay-btn" onclick="openPDF('pdfs/karl.pdf','Essay I')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay II</span><p class="essay-block-title">Reflection 2</p><p class="essay-block-excerpt">discription.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Essay II')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 1 -</div>
-          </div></div>
-          <div class="page-wrap"><div class="journal-page p2" style="clip-path:url(#crumple2);">
-            <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(50,82,40,0.62) 0px,rgba(50,82,40,0.62) 6px,rgba(80,122,60,0.52) 6px,rgba(80,122,60,0.52) 12px);"></div>
-            <div class="stain" style="width:58px;height:50px;top:108px;right:88px;transform:rotate(-8deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 2 - Chapter One (cont.)</span><h2 class="page-title">Antoine James A. <em>Macasero</em></h2><span class="page-date">Handsome</span><p class="page-desc">This person is very smart, handsome, kind, respectful, and has a great understanding of himself.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay III</span><p class="essay-block-title">Reflection 1</p><p class="essay-block-excerpt">desc.</p><button class="read-essay-btn" onclick="openPDF('pdfs/Antoine.pdf','Essay III')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay IV</span><p class="essay-block-title">Reflection 2</p><p class="essay-block-excerpt">desc.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Essay IV')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 2 -</div>
-          </div></div>
-        </div></div>
+  <!-- ═══════════════════════════════════════════════════════
+       CHAPTER I  (pages 1 & 2)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="tab-content active" id="tab-0"><div class="spread">
 
-        <div class="tab-content" id="tab-1"><div class="spread">
-          <div class="page-wrap"><div class="journal-page p1" style="clip-path:url(#crumple1);">
-            <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(40,70,120,0.65) 0px,rgba(40,70,120,0.65) 7px,rgba(70,110,170,0.55) 7px,rgba(70,110,170,0.55) 14px);"></div>
-            <div class="stain" style="width:70px;height:60px;bottom:200px;left:100px;"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><img src="images/kurt.png" alt="Kurt" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"><p class="page-img-caption">Kris Karl Cabrera</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 3 - Chapter Two</span><h2 class="page-title">Kurt Joseph O. <em>Pepito</em></h2><span class="page-date">Patient</span><p class="page-desc">I’m Kurt, an electronics engineering student with a strong interest in problem-solving, chess, and RF systems. I enjoy breaking down complex ideas and turning them into practical solutions.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay I</span><p class="essay-block-title">Reflection 1</p><p class="essay-block-excerpt">ess</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Two - Essay I')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay II</span><p class="essay-block-title">Reflection 2</p><p class="essay-block-excerpt">ess</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Two - Essay II')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 3 -</div>
-          </div></div>
-          <div class="page-wrap"><div class="journal-page p2" style="clip-path:url(#crumple2);">
-            <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(100,50,100,0.62) 0px,rgba(100,50,100,0.62) 6px,rgba(140,80,140,0.52) 6px,rgba(140,80,140,0.52) 12px);"></div>
-            <div class="stain" style="width:80px;height:70px;top:80px;left:90px;transform:rotate(5deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 4 - Chapter Two (cont.)</span><h2 class="page-title">Deeper into <em>Chapter Two</em></h2><span class="page-date">des</span><p class="page-desc">intro</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay III</span><p class="essay-block-title">Reflection 1</p><p class="essay-block-excerpt">ess</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Two - Essay III')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay IV</span><p class="essay-block-title">Reflection 2</p><p class="essay-block-excerpt">ess</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Two - Essay IV')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 4 -</div>
-          </div></div>
-        </div></div>
-
-        <div class="tab-content" id="tab-2"><div class="spread">
-          <div class="page-wrap"><div class="journal-page p1" style="clip-path:url(#crumple1);">
-            <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(20,90,70,0.65) 0px,rgba(20,90,70,0.65) 7px,rgba(40,130,100,0.55) 7px,rgba(40,130,100,0.55) 14px);"></div>
-            <div class="stain" style="width:90px;height:80px;bottom:250px;right:70px;transform:rotate(-5deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 5 - Chapter Three</span><h2 class="page-title">Into <em>Chapter Three</em></h2><span class="page-date">Date or subtitle goes here</span><p class="page-desc">Chapter three opens a new phase. This is where the narrative turns - perhaps a shift in tone, a new setting, or a moment of reflection.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay I</span><p class="essay-block-title">Chapter Three - First Essay Title</p><p class="essay-block-excerpt">First essay of the third chapter. What new ground does it break compared to the chapters before?</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Three - Essay I')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay II</span><p class="essay-block-title">Chapter Three - Second Essay Title</p><p class="essay-block-excerpt">Companion piece to the first. Together they form the emotional core of chapter three.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Three - Essay II')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 5 -</div>
-          </div></div>
-          <div class="page-wrap"><div class="journal-page p2" style="clip-path:url(#crumple2);">
-            <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(130,80,20,0.62) 0px,rgba(130,80,20,0.62) 6px,rgba(170,120,50,0.52) 6px,rgba(170,120,50,0.52) 12px);"></div>
-            <div class="stain" style="width:65px;height:55px;top:150px;right:100px;transform:rotate(10deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 6 - Chapter Three (cont.)</span><h2 class="page-title">Closing <em>Chapter Three</em></h2><span class="page-date">Date or subtitle goes here</span><p class="page-desc">The chapter closes here. Use this page to land the central idea or leave the reader with an image that stays with them as they turn to chapter four.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay III</span><p class="essay-block-title">Chapter Three - Third Essay Title</p><p class="essay-block-excerpt">Deepens the chapter's central question. A natural follow-on to the two essays on the facing page.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Three - Essay III')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay IV</span><p class="essay-block-title">Chapter Three - Fourth Essay Title</p><p class="essay-block-excerpt">Closes out chapter three with a sense of resolution or an open door into the final chapter.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Three - Essay IV')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 6 -</div>
-          </div></div>
-        </div></div>
-
-        <div class="tab-content" id="tab-3"><div class="spread">
-          <div class="page-wrap"><div class="journal-page p1" style="clip-path:url(#crumple1);">
-            <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(80,30,30,0.65) 0px,rgba(80,30,30,0.65) 7px,rgba(130,60,60,0.55) 7px,rgba(130,60,60,0.55) 14px);"></div>
-            <div class="stain" style="width:100px;height:85px;bottom:180px;left:80px;transform:rotate(-12deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 7 - Chapter Four</span><h2 class="page-title">The Final <em>Chapter</em></h2><span class="page-date">Date or subtitle goes here</span><p class="page-desc">The last chapter. This is where everything converges - the themes, the people, the questions. This text should feel like an arrival.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay I</span><p class="essay-block-title">Chapter Four - First Essay Title</p><p class="essay-block-excerpt">The penultimate essay of the collection. It should resonate with everything that came before while pushing toward a conclusion.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Four - Essay I')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay II</span><p class="essay-block-title">Chapter Four - Second Essay Title</p><p class="essay-block-excerpt">Pairs with the first essay of chapter four to form the book's final statement.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Four - Essay II')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 7 -</div>
-          </div></div>
-          <div class="page-wrap"><div class="journal-page p2" style="clip-path:url(#crumple2);">
-            <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(60,40,90,0.62) 0px,rgba(60,40,90,0.62) 6px,rgba(90,65,130,0.52) 6px,rgba(90,65,130,0.52) 12px);"></div>
-            <div class="stain" style="width:75px;height:65px;top:120px;left:110px;transform:rotate(8deg);"></div>
-            <div class="page-inner">
-              <div class="page-top">
-                <div class="page-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="2" stroke="#7a5a30" stroke-width="1.5" fill="none"/><circle cx="18" cy="20" r="4" stroke="#7a5a30" stroke-width="1.2" fill="none"/><path d="M6 32 L16 24 L24 30 L32 22 L42 32" stroke="#7a5a30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="page-img-caption">Replace with your image</p></div>
-                <div class="page-text-wrap"><span class="page-entry-label">Entry No. 8 - Chapter Four (cont.)</span><h2 class="page-title">The Last <em>Page</em></h2><span class="page-date">Date or subtitle goes here</span><p class="page-desc">The final page of the journal. Close with intention. This is the reader's last impression - a memory, a feeling, a line that stays with them.</p></div>
-              </div>
-              <div class="page-divider"></div>
-              <div class="page-bottom">
-                <div class="essay-block"><span class="essay-block-label">Essay III</span><p class="essay-block-title">Chapter Four - Third Essay Title</p><p class="essay-block-excerpt">Second-to-last essay. Carries the weight of everything that came before into this final act.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Four - Essay III')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-                <div class="essay-block"><span class="essay-block-label">Essay IV</span><p class="essay-block-title">Chapter Four - Final Essay Title</p><p class="essay-block-excerpt">The closing piece. Make its title and excerpt feel like an ending worth arriving at.</p><button class="read-essay-btn" onclick="openPDF('hold.pdf','Chapter Four - Essay IV')"><svg viewBox="0 0 10 10" fill="none"><path d="M1 5h8M6 2l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Read Essay</button></div>
-              </div>
-            </div>
-            <div class="pgnum">- 8 -</div>
-          </div></div>
-        </div></div>
-
+    <div class="page-wrap"><div class="journal-page p1 entry-1" style="clip-path:url(#crumple1);">
+      <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(150,65,28,0.68) 0px,rgba(150,65,28,0.68) 7px,rgba(190,100,48,0.58) 7px,rgba(190,100,48,0.58) 14px);"></div>
+      <div class="stain" style="width:88px;height:75px;top:46px;right:80px;transform:rotate(12deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
       </div>
+      <div class="pgnum">- 1 -</div>
+    </div></div>
+
+    <div class="page-wrap"><div class="journal-page p2 entry-2" style="clip-path:url(#crumple2);">
+      <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(50,82,40,0.62) 0px,rgba(50,82,40,0.62) 6px,rgba(80,122,60,0.52) 6px,rgba(80,122,60,0.52) 12px);"></div>
+      <div class="stain" style="width:58px;height:50px;top:108px;right:88px;transform:rotate(-8deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 2 -</div>
+    </div></div>
+
+  </div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CHAPTER II  (pages 3 & 4)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-1"><div class="spread">
+
+    <div class="page-wrap"><div class="journal-page p1 entry-3" style="clip-path:url(#crumple1);">
+      <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(40,70,120,0.65) 0px,rgba(40,70,120,0.65) 7px,rgba(70,110,170,0.55) 7px,rgba(70,110,170,0.55) 14px);"></div>
+      <div class="stain" style="width:70px;height:60px;bottom:200px;left:100px;"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 3 -</div>
+    </div></div>
+
+    <div class="page-wrap"><div class="journal-page p2 entry-4" style="clip-path:url(#crumple2);">
+      <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(100,50,100,0.62) 0px,rgba(100,50,100,0.62) 6px,rgba(140,80,140,0.52) 6px,rgba(140,80,140,0.52) 12px);"></div>
+      <div class="stain" style="width:80px;height:70px;top:80px;left:90px;transform:rotate(5deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 4 -</div>
+    </div></div>
+
+  </div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CHAPTER III  (pages 5 & 6)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-2"><div class="spread">
+
+    <div class="page-wrap"><div class="journal-page p1 entry-5" style="clip-path:url(#crumple1);">
+      <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(20,90,70,0.65) 0px,rgba(20,90,70,0.65) 7px,rgba(40,130,100,0.55) 7px,rgba(40,130,100,0.55) 14px);"></div>
+      <div class="stain" style="width:90px;height:80px;bottom:250px;right:70px;transform:rotate(-5deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 5 -</div>
+    </div></div>
+
+    <div class="page-wrap"><div class="journal-page p2 entry-6" style="clip-path:url(#crumple2);">
+      <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(130,80,20,0.62) 0px,rgba(130,80,20,0.62) 6px,rgba(170,120,50,0.52) 6px,rgba(170,120,50,0.52) 12px);"></div>
+      <div class="stain" style="width:65px;height:55px;top:150px;right:100px;transform:rotate(10deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 6 -</div>
+    </div></div>
+
+  </div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CHAPTER IV  (pages 7 & 8)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab-3"><div class="spread">
+
+    <div class="page-wrap"><div class="journal-page p1 entry-7" style="clip-path:url(#crumple1);">
+      <div class="washi" style="left:55px;width:132px;transform:rotate(-1.3deg);background:repeating-linear-gradient(90deg,rgba(80,30,30,0.65) 0px,rgba(80,30,30,0.65) 7px,rgba(130,60,60,0.55) 7px,rgba(130,60,60,0.55) 14px);"></div>
+      <div class="stain" style="width:100px;height:85px;bottom:180px;left:80px;transform:rotate(-12deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 7 -</div>
+    </div></div>
+
+    <div class="page-wrap"><div class="journal-page p2 entry-8" style="clip-path:url(#crumple2);">
+      <div class="washi" style="right:72px;width:108px;transform:rotate(1.5deg);background:repeating-linear-gradient(90deg,rgba(60,40,90,0.62) 0px,rgba(60,40,90,0.62) 6px,rgba(90,65,130,0.52) 6px,rgba(90,65,130,0.52) 12px);"></div>
+      <div class="stain" style="width:75px;height:65px;top:120px;left:110px;transform:rotate(8deg);"></div>
+      <div class="page-inner">
+        <div class="page-top">
+          <div class="page-img-wrap"></div>
+          <div class="page-text-wrap">
+            <span class="page-entry-label"></span>
+            <h2 class="page-title"></h2>
+            <span class="page-date"></span>
+            <p class="page-desc"></p>
+          </div>
+        </div>
+        <div class="page-divider"></div>
+        <div class="page-bottom"></div>
+      </div>
+      <div class="pgnum">- 8 -</div>
+    </div></div>
+
+  </div></div>
+
+</div>
     </div>
     </div>
   </div>
@@ -358,41 +529,32 @@
 
 <script src="script.js"></script>
 
-<!-- Website edge decorations (fixed, always visible on journal) -->
 <div id="edge-deco">
-  <!-- TOP EDGE -->
   <svg style="position:absolute;top:0;left:0;width:100%;height:80px;" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="0" y1="12" x2="1440" y2="12" stroke="#5a3a12" stroke-width="1" opacity="0.6"/>
     <line x1="0" y1="16" x2="1440" y2="16" stroke="#9a7d3a" stroke-width="0.4" opacity="0.4"/>
-    <!-- left top ornament -->
     <rect x="8" y="4" width="20" height="20" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.7"/>
     <rect x="11" y="7" width="14" height="14" stroke="#5a4820" stroke-width="0.5" fill="none" opacity="0.5"/>
     <circle cx="18" cy="14" r="3" stroke="#9a7d3a" stroke-width="0.6" fill="none" opacity="0.7"/>
-    <!-- right top ornament -->
     <rect x="1412" y="4" width="20" height="20" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.7"/>
     <rect x="1415" y="7" width="14" height="14" stroke="#5a4820" stroke-width="0.5" fill="none" opacity="0.5"/>
     <circle cx="1422" cy="14" r="3" stroke="#9a7d3a" stroke-width="0.6" fill="none" opacity="0.7"/>
-    <!-- center top medallion -->
     <circle cx="720" cy="14" r="22" stroke="#6a5228" stroke-width="0.7" fill="none" opacity="0.5"/>
     <circle cx="720" cy="14" r="15" stroke="#7a6030" stroke-width="0.6" fill="none" opacity="0.4"/>
     <line x1="720" y1="-2" x2="720" y2="30" stroke="#6a5228" stroke-width="0.5" opacity="0.4"/>
     <line x1="704" y1="14" x2="736" y2="14" stroke="#6a5228" stroke-width="0.5" opacity="0.4"/>
     <circle cx="720" cy="14" r="4" fill="#5a4218" opacity="0.6"/>
-    <!-- tick marks -->
     <line x1="200" y1="9" x2="200" y2="17" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
     <line x1="360" y1="9" x2="360" y2="17" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
     <line x1="560" y1="10" x2="560" y2="16" stroke="#6a5228" stroke-width="0.5" opacity="0.3"/>
     <line x1="880" y1="10" x2="880" y2="16" stroke="#6a5228" stroke-width="0.5" opacity="0.3"/>
     <line x1="1080" y1="9" x2="1080" y2="17" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
     <line x1="1240" y1="9" x2="1240" y2="17" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
-    <!-- swirls left -->
     <path d="M 50 14 C 60 7, 72 9, 78 14 C 84 19, 78 26, 70 24 C 62 22, 60 16, 65 13" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.5" stroke-linecap="round"/>
     <circle cx="65" cy="13" r="1.5" fill="#6a5228" opacity="0.5"/>
-    <!-- swirls right -->
     <path d="M 1390 14 C 1380 7, 1368 9, 1362 14 C 1356 19, 1362 26, 1370 24 C 1378 22, 1380 16, 1375 13" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.5" stroke-linecap="round"/>
     <circle cx="1375" cy="13" r="1.5" fill="#6a5228" opacity="0.5"/>
   </svg>
-  <!-- BOTTOM EDGE -->
   <svg style="position:absolute;bottom:0;left:0;width:100%;height:80px;" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="0" y1="68" x2="1440" y2="68" stroke="#5a3a12" stroke-width="1" opacity="0.6"/>
     <line x1="0" y1="64" x2="1440" y2="64" stroke="#9a7d3a" stroke-width="0.4" opacity="0.4"/>
@@ -418,26 +580,21 @@
     <path d="M 1390 66 C 1380 59, 1368 61, 1362 66 C 1356 71, 1362 78, 1370 76 C 1378 74, 1380 68, 1375 65" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.5" stroke-linecap="round"/>
     <circle cx="1375" cy="65" r="1.5" fill="#6a5228" opacity="0.5"/>
   </svg>
-  <!-- LEFT EDGE -->
   <svg style="position:absolute;top:0;left:0;width:70px;height:100%;" viewBox="0 0 70 900" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="14" y1="0" x2="14" y2="900" stroke="#5a3a12" stroke-width="1" opacity="0.6"/>
     <line x1="18" y1="0" x2="18" y2="900" stroke="#9a7d3a" stroke-width="0.4" opacity="0.4"/>
-    <!-- mid ornament -->
     <circle cx="14" cy="450" r="18" stroke="#6a5228" stroke-width="0.7" fill="none" opacity="0.5"/>
     <circle cx="14" cy="450" r="11" stroke="#7a6030" stroke-width="0.5" fill="none" opacity="0.4"/>
     <circle cx="14" cy="450" r="3.5" fill="#5a4218" opacity="0.55"/>
-    <!-- vine scrolls -->
     <path d="M 14 200 C 24 190, 36 195, 40 205 C 44 215, 36 226, 26 222 C 16 218, 14 208, 20 204" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.5" stroke-linecap="round"/>
     <circle cx="20" cy="204" r="1.5" fill="#6a5228" opacity="0.5"/>
     <path d="M 14 680 C 24 670, 36 675, 40 685 C 44 695, 36 706, 26 702 C 16 698, 14 688, 20 684" stroke="#7a6030" stroke-width="0.8" fill="none" opacity="0.5" stroke-linecap="round"/>
     <circle cx="20" cy="684" r="1.5" fill="#6a5228" opacity="0.5"/>
-    <!-- tick marks -->
     <line x1="10" y1="150" x2="18" y2="150" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
     <line x1="10" y1="300" x2="18" y2="300" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
     <line x1="10" y1="600" x2="18" y2="600" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
     <line x1="10" y1="750" x2="18" y2="750" stroke="#6a5228" stroke-width="0.6" opacity="0.4"/>
   </svg>
-  <!-- RIGHT EDGE -->
   <svg style="position:absolute;top:0;right:0;width:70px;height:100%;" viewBox="0 0 70 900" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="56" y1="0" x2="56" y2="900" stroke="#5a3a12" stroke-width="1" opacity="0.6"/>
     <line x1="52" y1="0" x2="52" y2="900" stroke="#9a7d3a" stroke-width="0.4" opacity="0.4"/>
