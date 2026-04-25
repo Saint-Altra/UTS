@@ -74,13 +74,13 @@ function openCurtain(){
   var fade=document.getElementById('fade-overlay'),overlay=document.getElementById('landing-overlay');
   var journal=document.getElementById('journal-page');
   document.getElementById('start-btn').disabled=true;
+  playBg();
   cL.classList.add('open');cR.classList.add('open');
   setTimeout(function(){fade.classList.add('fade-in');},1100);
   setTimeout(function(){
     cL.style.display='none';cR.style.display='none';overlay.style.display='none';
     journal.style.display='block';journal.getBoundingClientRect();
     journal.classList.add('visible');scaleJournal();drawTable();
-    playBg();
     document.getElementById('edge-deco').classList.add('show');
     // Show theater prologue overlay on top of journal
     setTimeout(showTheaterPrologue, 600);
